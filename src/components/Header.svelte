@@ -70,10 +70,85 @@
 </nav>
 
 <style lang="scss">
-  #mobile-menu ul li a {
-    text-transform: uppercase;
-    font-family: "Zen Kaku Gothic New", sans-serif;
-    font-size: 0.85em;
-    font-weight: 800;
+  .slide-in {
+    opacity: 1;
+    animation: slide-in 5s forwards;
+    -webkit-animation: slide-in 5s forwards;
+  }
+
+  .slide-out {
+    opacity: 0;
+    animation: slide-out 5s forwards;
+    -webkit-animation: slide-out 5s forwards;
+  }
+
+  @keyframes slide-in {
+    100% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
+  @-webkit-keyframes slide-in {
+    100% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+  }
+
+  @keyframes slide-out {
+    0% {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(50%);
+    }
+  }
+
+  @-webkit-keyframes slide-out {
+    0% {
+      opacity: 1;
+      -webkit-transform: translateX(0%);
+    }
+    100% {
+      opacity: 0;
+      -webkit-transform: translateX(50%);
+    }
+  }
+
+  #mobile-menu ul li {
+    
+    a {
+      text-transform: uppercase;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 0.85em;
+      font-weight: 800;
+      transition: all 0.25s ease-out;
+      transform: skewX(0deg);
+    }
+    a::before{
+      opacity: 1;
+      transition: all 0.25s ease-out;
+    }
+    a:hover::before {
+      display: block;
+      content: "";
+      background-image: url("/circle_degrade.svg");
+      height: 20px;
+      width: 20px;
+
+      position: absolute;
+      z-index: -10;
+      left: -15px;
+      transition-duration: 500ms;
+      transition-property: opacity;
+      transition: all 0.25s ease-out;
+    }
+    a:hover {
+      transform: skewX(-10deg);
+      color: $vert1;
+    }
   }
 </style>
