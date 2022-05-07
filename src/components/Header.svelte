@@ -8,8 +8,12 @@
 </script>
 
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-100">
-  <div class="container flex flex-wrap justify-between items-center mx-auto">
-    <img src="" class="mr-3 h-6 sm:h-9" alt="efp logo" />
+  <div class="container flex flex-wrap justify-between items-center">
+    
+    <a href="/">
+      <img src="/logo-efp-with-initials.png" class="logo-efp" alt="efp logo" />
+    </a>
+    
     <button
       data-collapse-toggle="mobile-menu"
       type="button"
@@ -53,16 +57,16 @@
           <a href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 md:p-0">Réalisations</a>
+          <a href="/realisations" class="block py-2 pr-4 pl-3 md:p-0">Réalisations</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 md:p-0">Partenaires</a>
+          <a href="/partenaires" class="block py-2 pr-4 pl-3 md:p-0">Partenaires</a>
         </li>
         <li>
           <a href="/articles" class="block py-2 pr-4 pl-3 md:p-0">Articles</a>
         </li>
         <li>
-          <a href="#" class="block py-2 pr-4 pl-3 md:p-0">Contact</a>
+          <a href="/contact" class="block py-2 pr-4 pl-3 md:p-0">Contact</a>
         </li>
       </ul>
     </div>
@@ -70,56 +74,15 @@
 </nav>
 
 <style lang="scss">
-  .slide-in {
-    opacity: 1;
-    animation: slide-in 5s forwards;
-    -webkit-animation: slide-in 5s forwards;
-  }
+  .container{
+    max-width: inherit!important;
 
-  .slide-out {
-    opacity: 0;
-    animation: slide-out 5s forwards;
-    -webkit-animation: slide-out 5s forwards;
-  }
-
-  @keyframes slide-in {
-    100% {
-      opacity: 1;
-      transform: translateX(0%);
+    .logo-efp{
+      width: 50px;
+      height: 50px;
     }
   }
-
-  @-webkit-keyframes slide-in {
-    100% {
-      opacity: 1;
-      -webkit-transform: translateX(0%);
-    }
-  }
-
-  @keyframes slide-out {
-    0% {
-      opacity: 1;
-      transform: translateX(0%);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(50%);
-    }
-  }
-
-  @-webkit-keyframes slide-out {
-    0% {
-      opacity: 1;
-      -webkit-transform: translateX(0%);
-    }
-    100% {
-      opacity: 0;
-      -webkit-transform: translateX(50%);
-    }
-  }
-
   #mobile-menu ul li {
-    
     a {
       text-transform: uppercase;
       font-family: "Zen Kaku Gothic New", sans-serif;
@@ -128,23 +91,24 @@
       transition: all 0.25s ease-out;
       transform: skewX(0deg);
     }
-    a::before{
-      opacity: 1;
-      transition: all 0.25s ease-out;
-    }
-    a:hover::before {
+    a::before {
       display: block;
+      position: absolute;
+      z-index: -10;
+      left: -15px;
+      opacity: 1;
       content: "";
       background-image: url("/circle_degrade.svg");
       height: 20px;
       width: 20px;
-
-      position: absolute;
-      z-index: -10;
-      left: -15px;
-      transition-duration: 500ms;
-      transition-property: opacity;
-      transition: all 0.25s ease-out;
+      -webkit-transition: all cubic-bezier(0.55, 0.085, 0.68, 0.53) s;
+      transition: all 0.25s linear;
+      opacity: 0;
+      transform: skewX(10deg);
+    }
+    a:hover::before {
+      opacity: 1;
+      transition: all 0.25s linear;
     }
     a:hover {
       transform: skewX(-10deg);
