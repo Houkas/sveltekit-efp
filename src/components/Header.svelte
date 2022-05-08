@@ -9,11 +9,10 @@
 
 <nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-100">
   <div class="container flex flex-wrap justify-between items-center">
-    
     <a href="/">
       <img src="/logo-efp-with-initials.png" class="logo-efp" alt="efp logo" />
     </a>
-    
+
     <button
       data-collapse-toggle="mobile-menu"
       type="button"
@@ -57,10 +56,14 @@
           <a href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
         </li>
         <li>
-          <a href="/realisations" class="block py-2 pr-4 pl-3 md:p-0">Réalisations</a>
+          <a href="/realisations" class="block py-2 pr-4 pl-3 md:p-0"
+            >Réalisations</a
+          >
         </li>
         <li>
-          <a href="/partenaires" class="block py-2 pr-4 pl-3 md:p-0">Partenaires</a>
+          <a href="/partenaires" class="block py-2 pr-4 pl-3 md:p-0"
+            >Partenaires</a
+          >
         </li>
         <li>
           <a href="/articles" class="block py-2 pr-4 pl-3 md:p-0">Articles</a>
@@ -74,10 +77,19 @@
 </nav>
 
 <style lang="scss">
-  .container{
-    max-width: inherit!important;
+  @keyframes slidein {
+    from {
+      margin-left: -10px;
 
-    .logo-efp{
+    }
+    to {
+      margin-left: 0;
+
+    }
+  }
+  .container {
+    max-width: inherit !important;
+    .logo-efp {
       width: 50px;
       height: 50px;
     }
@@ -109,10 +121,12 @@
     a:hover::before {
       opacity: 1;
       transition: all 0.25s linear;
+      animation-duration: .25s;
+      animation-name: slidein;
     }
     a:hover {
       transform: skewX(-10deg);
-      color: $vert1;
+      color: $vertFonce;
     }
   }
 </style>

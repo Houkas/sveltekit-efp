@@ -1,1 +1,14 @@
-$vert1: #004E63;
+$vertFonce: #004E63;
+$vertGris:#BACCCB;
+$blanc: #F8FBFB;
+body{
+    font-family: 'Roboto Slab', serif;
+    margin: 0;
+    background-color: $blanc;
+}
+h1, h2, h3, h4{
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+}
+p, span{
+    font-family: 'Roboto Slab', serif;
+}
