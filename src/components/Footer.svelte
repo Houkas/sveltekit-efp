@@ -2,7 +2,7 @@
 </script>
 
 <footer
-  class=" sm:pl-0 sm:pr-0 bg-white dashed dashed-top md:flex md:items-center md:justify-between md:pl-20 md:pr-20 "
+  class=" sm:pl-0 sm:pr-0 bg-white dashed-footer dashed-footer-top md:flex md:items-center md:justify-between md:pl-20 md:pr-20 "
 >
   <div class="container-footer md:flex md:items-center md:justify-between ">
     <span class="text-sm">
@@ -19,7 +19,7 @@
 </footer>
 
 <style lang="scss">
-  .dashed-top {
+  .dashed-footer-top {
     background-image: linear-gradient(
       to right,
       $blanc 66%,
@@ -29,7 +29,7 @@
     background-size: 25px 2px;
     background-repeat: repeat-x;
   }
-  .dashed::before {
+  .dashed-footer::before {
     content: "";
     position: absolute;
     min-height: 162px;
@@ -40,7 +40,7 @@
     background-size: 2px 25px;
     background-repeat: repeat-y;
   }
-  .dashed::after {
+  .dashed-footer::after {
     content: "";
     position: absolute;
     min-height: 162px;
@@ -50,7 +50,7 @@
     background-position: right;
     background-size: 2px 25px;
     background-repeat: repeat-y;
-    right: 85px;
+    right: 80px;
   }
   footer {
     min-height: 162px;
@@ -74,13 +74,13 @@
     }
   }
   @media (max-width: 640px) {
-      .dashed::after,
-      .dashed::before {
+      .dashed-footer::after,
+      .dashed-footer::before {
         display: none !important;
       }
       footer .logo-efp{
         margin: 10px auto 10px auto;
 
       }
-    }
+  }
 </style>

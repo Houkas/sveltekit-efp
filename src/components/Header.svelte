@@ -6,8 +6,8 @@
     isMenuOpen = !isMenuOpen;
   }
 </script>
-
-<nav class="bg-white border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-100">
+  
+<nav class="px-2 sm:px-4 py-2.5 fixed">
   <div class="container flex flex-wrap justify-between items-center">
     <a href="/">
       <img src="/logo-efp-with-initials.png" class="logo-efp" alt="efp logo" />
@@ -84,8 +84,12 @@
     }
     to {
       margin-left: 0;
-
     }
+  }
+  nav{
+    min-width: 100%;
+    background-color:$blanc;
+    z-index: 11;
   }
   .container {
     max-width: inherit !important;

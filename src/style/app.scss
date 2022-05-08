@@ -2,10 +2,13 @@ $vertFonce: #004E63;
 $vertGris:#BACCCB;
 $blanc: #F8FBFB;
 $noir: #122023;
-body{
+body, main{
     font-family: 'Roboto Slab', serif;
     margin: 0;
     background-color: $blanc;
+}
+main{
+    
 }
 h1, h2, h3, h4{
     font-family: 'Zen Kaku Gothic New', sans-serif;
@@ -14,3 +17,4 @@ p, span{
     font-family: 'Roboto Slab', serif;
     color:$noir;
 }
+
