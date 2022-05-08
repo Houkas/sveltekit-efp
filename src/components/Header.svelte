@@ -102,6 +102,7 @@
       font-weight: 800;
       transition: all 0.25s ease-out;
       transform: skewX(0deg);
+      color: $noir;
     }
     a::before {
       display: block;

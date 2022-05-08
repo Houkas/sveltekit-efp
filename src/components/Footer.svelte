@@ -2,7 +2,7 @@
 </script>
 
 <footer
-  class="pl-4 pr-4 bg-white md:flex md:items-center md:justify-between md:pl-6 md:pr-6 "
+  class=" sm:pl-0 sm:pr-0 bg-white dashed dashed-top md:flex md:items-center md:justify-between md:pl-20 md:pr-20 "
 >
   <div class="container-footer md:flex md:items-center md:justify-between ">
     <span class="text-sm">
@@ -19,35 +19,68 @@
 </footer>
 
 <style lang="scss">
-  footer {
-    padding-left: 85px;
-    padding-right: 85px;
-    .container-footer {
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-      padding: 0 33px 0 33px;
-      border-left: dashed 3px $blanc;
-    }
-
+  .dashed-top {
     background-image: linear-gradient(
       to right,
-      $blanc 33%,
+      $blanc 66%,
       rgba(255, 255, 255, 0) 0%
     );
     background-position: top;
-    background-size: 30px 2px;
+    background-size: 25px 2px;
     background-repeat: repeat-x;
-
-    height: 162px;
+  }
+  .dashed::before {
+    content: "";
+    position: absolute;
+    min-height: 162px;
+    width: 2px;
+    z-index: 10;
+    background-image: linear-gradient($blanc 66%, rgba(255, 255, 255, 0) 0%);
+    background-position: left;
+    background-size: 2px 25px;
+    background-repeat: repeat-y;
+  }
+  .dashed::after {
+    content: "";
+    position: absolute;
+    min-height: 162px;
+    width: 2px;
+    z-index: 10;
+    background-image: linear-gradient($blanc 66%, rgba(255, 255, 255, 0) 0%);
+    background-position: right;
+    background-size: 2px 25px;
+    background-repeat: repeat-y;
+    right: 85px;
+  }
+  footer {
+    min-height: 162px;
     background-color: $vertGris;
     font-family: "Zen Kaku Gothic New", sans-serif;
+
+    .container-footer {
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px 33px 10px 33px;
+    }
+
     span {
       font-family: "Zen Kaku Gothic New", sans-serif;
+      color: $noir;
     }
+
     .logo-efp {
       width: 65px;
       height: 65px;
     }
   }
+  @media (max-width: 640px) {
+      .dashed::after,
+      .dashed::before {
+        display: none !important;
+      }
+      footer .logo-efp{
+        margin: 10px auto 10px auto;
+
+      }
+    }
 </style>
