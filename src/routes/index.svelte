@@ -2,10 +2,7 @@
 </script>
 
 <script>
-  import { gsap } from "gsap";
-  import { onMount } from "svelte";
-
-  onMount(() => {});
+  
 </script>
 
 <svelte:head>
@@ -28,14 +25,10 @@
   <div class="dashed dashed-top min-h-screen mx-auto content-box" />
 </div>
 <div class="container-content">
-  <div class="dashed dashed-top min-h-screen mx-auto content-box">
-
-  </div>
+  <div class="dashed dashed-top min-h-screen mx-auto content-box" />
 </div>
 <div class="container-content">
-  <div class="dashed dashed-top  min-h-screen mx-auto content-box">
-
-  </div>
+  <div class="dashed dashed-top  min-h-screen mx-auto content-box" />
 </div>
 
 <style lang="scss">
@@ -85,7 +78,7 @@
     .content-box {
       padding: 0;
     }
-    .dashed::after{
+    .dashed::after {
       right: 0;
     }
   }
