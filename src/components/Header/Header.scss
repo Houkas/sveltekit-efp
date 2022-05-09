@@ -1,0 +1,57 @@
+@keyframes slidein {
+    from {
+      margin-left: -10px;
+
+    }
+    to {
+      margin-left: 0;
+    }
+  }
+  nav{
+    min-width: 100%;
+    background-color:$blanc;
+    z-index: 11;
+  }
+  .container {
+    max-width: inherit !important;
+    .logo-efp {
+      width: 50px;
+      height: 50px;
+    }
+  }
+  #mobile-menu ul li {
+    a {
+      text-transform: uppercase;
+      font-family: "Zen Kaku Gothic New", sans-serif;
+      font-size: 0.85em;
+      font-weight: 800;
+      transition: all 0.25s ease-out;
+      transform: skewX(0deg);
+      color: $noir;
+    }
+    a::before {
+      display: block;
+      position: absolute;
+      z-index: -10;
+      left: -15px;
+      opacity: 1;
+      content: "";
+      background-image: url("/circle_degrade.svg");
+      height: 20px;
+      width: 20px;
+      -webkit-transition: all cubic-bezier(0.55, 0.085, 0.68, 0.53) s;
+      transition: all 0.25s linear;
+      opacity: 0;
+      transform: skewX(10deg);
+    }
+    a:hover::before {
+      opacity: 1;
+      transition: all 0.25s linear;
+      animation-duration: .25s;
+      animation-name: slidein;
+    }
+    a:hover {
+      transform: skewX(-10deg);
+      color: $vertFonce;
+    }
+  }
