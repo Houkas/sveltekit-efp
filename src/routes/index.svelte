@@ -20,7 +20,24 @@
   <section class="container-content" data-scroll-section>
     <div class="content-desc dashed dashed-top min-h-screen mx-auto content-box">
       <div class="yellow-rec"></div>
-      <div class="grey-rec"></div>
+      <div class="grey-rec">
+        <h2>Lorem ipsum ipsum</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Donec ut ante ante. Nam semper, mauris vitae aliquam facilisis,
+          nulla mauris porttitor dui, sodales faucibus ligula felis quis augue. 
+          Praesent lobortis aliquam tempor. Vestibulum quis vestibulum ex.
+          Sed eu malesuada metus. Class aptent taciti sociosqu.<br>
+        </p>
+        <p>
+          Ut quis elit iaculis, porta arcu et, aliquam sapien. 
+          Nulla blandit ante tincidunt ex mollis aliquet. Integer et pretium felis.
+          In varius finibus eros ut rutrum. Pellentesque mauris libero, scelerisque ut ornare id,
+          aliquam nec ex. In vehicula pellentesque vehicula. 
+          Aliquam consequat erat eu elit egestas, quis malesuada ligula consequat. Aenean sit amet posuere massa.
+        </p>
+      </div>
+      <img class ="depot" src="/depot-efp.jpg" alt="Dépot EFP à Saveterre de Guyenne">
     </div>
   </section>
   <section class="container-content" data-scroll-section>
