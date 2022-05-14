@@ -1,9 +1,9 @@
 .content-video {
-  img{
-    position:relative;
+  img {
+    position: relative;
     z-index: 5;
-    //top: 70px;
   }
+
   h1 {
     position: absolute;
     z-index: 10;
@@ -13,39 +13,44 @@
     text-transform: uppercase;
     color: #26fff4;
     left: 19%;
+
     .h-efp {
       font-size: 140px;
       line-height: 110px;
       letter-spacing: 0.25em;
     }
+
     .h-entreprise {
       font-size: 80px;
       line-height: 80px;
       letter-spacing: 0.25em;
     }
-    .h-peinture{
+
+    .h-peinture {
       font-size: 80px;
       line-height: 80px;
       letter-spacing: 0.25em;
       letter-spacing: 0.1875em;
     }
   }
-  
+
 }
-.content-desc{
+
+.content-desc {
   display: flex;
   flex-direction: row;
   align-items: center;
-  .yellow-rec{
+
+  .yellow-rec {
     width: 125px;
     height: 88vh;
     background-color: $jaune;
     position: relative;
   }
-  .grey-rec{
+
+  .grey-rec {
     padding: 50px;
     width: 50%;
-    height: 75.5vh;
     background-color: $vertGris;
     position: relative;
     left: -3.75em;
@@ -53,7 +58,8 @@
     align-items: flex-start;
     flex-direction: column;
     justify-content: center;
-    h2{
+
+    h2 {
       text-transform: uppercase;
       margin: 10px 0 10px 0;
       font-size: 40px;
@@ -61,12 +67,14 @@
       font-weight: bold;
       z-index: 5;
     }
-    p{
+
+    p {
       margin-bottom: 20px;
       z-index: 5;
     }
   }
-  .grey-rec::before{
+
+  .grey-rec::before {
     content: "";
     position: absolute;
     height: 60vh;
@@ -75,48 +83,176 @@
     border: dashed 2px $vertGris;
     right: -25%;
     top: -25%;
+    animation: rotation 60s infinite linear;
   }
-  .depot{
+
+  .depot {
     width: 420px;
-    height:200px;
+    height: 200px;
     z-index: 5;
   }
+
+  .indic {
+    position: absolute;
+    transform-origin: 0 0;
+    transform: rotate(90deg);
+    text-transform: uppercase;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: $vertFonce;
+    right: -5em;
+    margin-top: -5em;
+    font-size: 11.5px;
+    padding: 5px;
+    z-index: 11;
+    background-color: $vertGris
+  }
 }
+
+// CSS COMMUN // 
 .container-content {
   width: 100%;
+  .indic {
+    position: absolute;
+    transform-origin: 0 0;
+    transform: rotate(90deg);
+    text-transform: uppercase;
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+    color: $vertFonce;
+    right: -5em;
+    margin-top: -5em;
+    font-size: 11.5px;
+    padding: 5px;
+    z-index: 11;
+    background-color: $vertGris
+  }
 }
+
 .content-box {
   padding: 0 80px 0 80px;
 }
+
 .dashed-top {
-  background-image: linear-gradient(
-    to right,
-    $vertGris 66%,
-    rgba(255, 255, 255, 0) 0%
-  );
+  background-image: linear-gradient(to right,
+      $vertGris 66%,
+      rgba(255, 255, 255, 0) 0%);
   background-position: top;
   background-size: 25px 2px;
   background-repeat: repeat-x;
 }
+
 .dashed::before {
   background-position: left;
+  width: 2px;
 }
+
 .dashed::after {
   background-position: right;
   right: 80px;
+  z-index: 5;
+  width: 5px;
 }
+
 .dashed::after,
 .dashed::before {
   content: "";
   position: absolute;
   min-height: 100vh;
-  width: 2px;
+
   z-index: 10;
   background-image: linear-gradient($vertGris 66%, rgba(255, 255, 255, 0) 0%);
   background-size: 2px 25px;
   background-repeat: repeat-y;
 }
 
+
+// RESPONSIVE //
+@media (max-width: 640px) {
+
+  // CSS COMMUN //
+  .container-content {
+    .indic {
+      display: none;
+    }
+  }
+  .content-box {
+    padding: 0;
+  }
+  .dashed::after {
+    right: 0;
+  }
+
+  .content-video {
+    img {
+      top: 70px;
+      z-index: 11;
+    }
+    h1 {
+      font-style: normal;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: #26fff4;
+      display: block;
+      margin: 0 auto;
+      bottom: unset;
+      z-index: 12;
+      margin-top: 10px;
+      .h-efp {
+        font-size: 50px;
+        letter-spacing: .875em;
+        line-height: 35px;
+      }
+      .h-entreprise {
+        font-size: 22px;
+        line-height: 20px;
+      }
+      .h-peinture {
+        font-size: 22px;
+        line-height: 20px;
+        letter-spacing: 0.25em;
+        letter-spacing: 0.1875em;
+      }
+    }
+  }
+
+  .content-desc {
+    .yellow-rec {
+      height: 65vh;
+      width: 55px;
+    }
+    .grey-rec {
+      width: 100%;
+      padding: 40px;
+      left: -1.1em;
+      h2 {
+        font-size: 25px;
+      }
+      p {
+        font-size: 12px;
+      }
+    }
+    .grey-rec::before {
+      height: 30vh;
+      width: 30vh;
+      right: -15%;
+      top: -15%;
+    }
+    .depot {
+      display: none;
+    }
+  }
+}
+
+// ANIMATIONS //
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+// SMOOTH SCROLL //
 
 /*! locomotive-scroll v4.1.3 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
 html.has-scroll-smooth {
@@ -161,14 +297,17 @@ html.has-scroll-dragging {
   transition: transform 0.3s, opacity 0.3s;
   opacity: 0;
 }
+
 .c-scrollbar:hover {
   transform: scaleX(1.45);
 }
+
 .c-scrollbar:hover,
 .has-scroll-scrolling .c-scrollbar,
 .has-scroll-dragging .c-scrollbar {
   opacity: 1;
 }
+
 [data-scroll-direction="horizontal"] .c-scrollbar {
   width: 100%;
   height: 10px;
@@ -176,6 +315,7 @@ html.has-scroll-dragging {
   bottom: 0;
   transform: scaleY(1);
 }
+
 [data-scroll-direction="horizontal"] .c-scrollbar:hover {
   transform: scaleY(1.3);
 }
@@ -192,73 +332,15 @@ html.has-scroll-dragging {
   cursor: -webkit-grab;
   cursor: grab;
 }
+
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
 }
+
 [data-scroll-direction="horizontal"] .c-scrollbar_thumb {
   right: auto;
   bottom: 0;
 }
 
 
-@media (max-width: 640px) {
-  .content-box {
-    padding: 0;
-  }
-  .dashed::after {
-    right: 0;
-  }
-  .content-video{
-    img{
-      top: 70px;
-    }
-    h1 {
-      font-style: normal;
-      font-weight: 900;
-      text-transform: uppercase;
-      color: #26fff4;
-      display: block;
-      margin: 0 auto;
-      bottom: unset;
-      .h-efp {
-        font-size: 50px;
-        letter-spacing: .875em;
-        line-height: 35px;
-      }
-      .h-entreprise {
-        font-size: 22px;
-        line-height: 20px;
-      }
-      .h-peinture{
-        font-size: 22px;
-        line-height: 20px;
-        letter-spacing: 0.25em;
-        letter-spacing: 0.1875em;
-      }
-    }
-  }
-  .content-desc{
-    .grey-rec{
-      width: 100%;
-      padding: 15px;
-      h2{
-        font-size: 25px;
-      }
-      p{
-        font-size: 12px;
-      }
-    }
-    .grey-rec::before{
-      height: 30vh;
-      width: 30vh;
-      right: -15%;
-      top: -15%;
-    }
-    .depot{
-      display: none;
-    }
-  }
-  
-  
-}

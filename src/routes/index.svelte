@@ -7,6 +7,7 @@
 </svelte:head>
 
 <div class="content-container" data-scroll-container>
+
   <section class="container-content " data-scroll-section>
     <div class="content-video  mx-auto">
       <img src="/bg-home-efp.jpg" alt="vidéo présentation EFP">
@@ -17,6 +18,7 @@
       </h1>
     </div>
   </section>
+
   <section class="container-content" data-scroll-section>
     <div class="content-desc dashed dashed-top min-h-screen mx-auto content-box">
       <div class="yellow-rec"></div>
@@ -38,14 +40,18 @@
         </p>
       </div>
       <img class ="depot" src="/depot-efp.jpg" alt="Dépot EFP à Saveterre de Guyenne">
+      <span class="indic">Qui sommes-nous ?</span>
     </div>
   </section>
+
   <section class="container-content" data-scroll-section>
     <div class="dashed dashed-top min-h-screen mx-auto content-box" />
   </section>
+
   <section class="container-content" data-scroll-section>
     <div class="dashed dashed-top  min-h-screen mx-auto content-box" />
   </section>
+
 </div>
 
 <style lang="scss">
