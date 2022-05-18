@@ -57,7 +57,7 @@
 <style lang="scss">
   @import "index.scss";
 </style>
-
+ 
 <script>
   // @ts-ignore
   //import LocomotiveScroll from "locomotive-scroll";
