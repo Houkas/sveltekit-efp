@@ -5,6 +5,8 @@
 <script>
   import { onMount } from "svelte/internal";
   import { page } from "$app/stores";
+  import { fade } from 'svelte/transition';
+
   onMount( async () => {
     
   })
@@ -62,7 +64,7 @@
         class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium"
       >
         <li class={isHomePage === true ? "hidden" : ""}>
-          <a href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
+          <a  href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
         </li>
         <li>
           <a href="/realisations" class="block py-2 pr-4 pl-3 md:p-0"

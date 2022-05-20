@@ -1,4 +1,5 @@
 <script context="module">
+  import { fade } from 'svelte/transition';
   export async function load({ fetch }) {
     const res = await fetch(
       "https://efp-peinture.ghost.io/ghost/api/v4/content/posts?key=8f8c4ecc07f4f673e96b16176a&filter=tag:article"
@@ -6,7 +7,6 @@
 
     const datas = await res.json();
     const articles = datas.posts;
-    console.log(articles);
     if (res.ok) {
       return {
         props: {
@@ -36,9 +36,7 @@
   />
 </svelte:head>
 
-
-
-<div class="articles container mx-auto h-screen bg-gray-200">
+<div transition:fade class="articles container mx-auto h-screen bg-gray-200">
   <p>Liste de tous les articles</p>
   <ul>
     {#each articles as article}

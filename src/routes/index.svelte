@@ -6,11 +6,33 @@
   />
 </svelte:head>
 
-<div class="content-container" data-scroll-container>
+<script>
+  import { fade } from 'svelte/transition';
+  // @ts-ignore
+  //import LocomotiveScroll from "locomotive-scroll";
+  import { onMount } from "svelte";
+ 
+  onMount(() => {
+
+    /*const scroll = new LocomotiveScroll({
+      el: document.querySelector("[data-scroll-container]"),
+      smooth: true,
+    });*/
+
+  });
+</script>
+
+
+<div transition:fade class="content-container" data-scroll-container>
 
   <section class="container-content " data-scroll-section>
     <div class="content-video  mx-auto">
-      <img src="/bg-home-efp.jpg" alt="vidéo présentation EFP">
+      <!--<img src="/bg-home-efp.jpg" alt="vidéo présentation EFP">-->
+      <video autoplay loop muted>
+        <source src="/intro2.mp4" type="video/mp4" />
+        
+        Your browser does not support the video tag.
+      </video>
       <h1>
         <span class="h-efp">EFP</span><br>
         <span class="h-entreprise">entreprise</span><br>
@@ -57,18 +79,3 @@
 <style lang="scss">
   @import "index.scss";
 </style>
- 
-<script>
-  // @ts-ignore
-  //import LocomotiveScroll from "locomotive-scroll";
-  import { onMount } from "svelte";
- 
-  onMount(() => {
-
-    /*const scroll = new LocomotiveScroll({
-      el: document.querySelector("[data-scroll-container]"),
-      smooth: true,
-    });*/
-
-  });
-</script>

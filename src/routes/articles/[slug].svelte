@@ -1,4 +1,5 @@
 <script context="module">
+  import { fade } from 'svelte/transition';
   export async function load({ fetch, params }) {
     const slug = params.slug;
     const res = await fetch(
@@ -33,7 +34,7 @@
   <meta name="description" content={article.meta_description} />
 </svelte:head>
 
-<div class="article container mx-auto mt-7 bg-gray-200 min-h-screen">
+<div transition:fade class="article container mx-auto mt-7 bg-gray-200 min-h-screen">
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
     <h1>{article.title}</h1>
     {@html article.html}
@@ -45,9 +46,13 @@
     section {
       margin-top: 70px;
     }
-
+    :global(.kg-gallery-row){
+      display: flex;
+      flex-direction: row;
+    }
     :global(.kg-gallery-image img) {
       max-width: 250px;
+      margin: 15px;
     }
     :global(.kg-file-card-icon) {
       max-width: 25px;
