@@ -3,12 +3,17 @@
 </style>
 
 <script>
+  import { onMount } from "svelte/internal";
   import { page } from "$app/stores";
-  let isHomePage = $page.url.pathname == "/" ? true : false;
+  onMount( async () => {
+    
+  })
+  $: isHomePage = $page.url.pathname == "/" ? true : false;
   let isMenuOpen = false;
   function openMobileMenu() {
     isMenuOpen = !isMenuOpen;
   }
+
 </script>
   
 <nav class="px-2 sm:px-4 py-2.5 fixed">
