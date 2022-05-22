@@ -1,4 +1,4 @@
-<script context="module">
+<script context="module" lang="ts">
   import { fade } from 'svelte/transition';
   export async function load({ fetch }) {
     const res = await fetch(

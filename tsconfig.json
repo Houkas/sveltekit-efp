@@ -1,5 +1,5 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	/*"extends": "./.svelte-kit/tsconfig.json",
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
@@ -13,5 +13,5 @@
 		"sourceMap": true,
 		"strict": true,
 		"target": "es2020"
-	}
+	}*/
 }

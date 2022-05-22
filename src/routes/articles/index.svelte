@@ -1,31 +1,7 @@
 <script context="module">
-  import { fade } from 'svelte/transition';
-  export async function load({ fetch }) {
-    const res = await fetch(
-      "https://efp-peinture.ghost.io/ghost/api/v4/content/posts?key=8f8c4ecc07f4f673e96b16176a&filter=tag:article"
-    );
-
-    const datas = await res.json();
-    const articles = datas.posts;
-    if (res.ok) {
-      return {
-        props: {
-          articles,
-        },
-      };
-    } else {
-      return {
-        error: res.message,
-      };
-    }
-  }
-</script>
-
-<script>
-  /**
-   * @type {any[]}
-   */
-  export let articles = [];
+  import { fade } from "svelte/transition";
+  import { fetchGhostArticles } from "../../shared/ghost_service";
+  import {fetchStrapiArticles} from "../../shared/strapi_service";
 </script>
 
 <svelte:head>
@@ -39,11 +15,19 @@
 <div transition:fade class="articles container mx-auto h-screen bg-gray-200">
   <p>Liste de tous les articles</p>
   <ul>
-    {#each articles as article}
-      <li class="m-2 p-2">
-        <a class="m-2 p-2" href={`/articles/${article.slug}`}>{article.title}</a>
-      </li>
-    {/each}
+    {#await fetchStrapiArticles()}
+      <p>... Waiting</p>
+    {:then articles}
+      {#each articles as article}
+        <li class="m-2 p-2">
+          <a class="m-2 p-2" href={`/articles/${article.slug}`}
+            >{article.title}</a
+          >
+        </li>
+      {/each}
+    {:catch}
+      <p>Erreur api</p>
+    {/await}
   </ul>
 </div>
 

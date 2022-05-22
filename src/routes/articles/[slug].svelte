@@ -1,32 +1,24 @@
-<script context="module">
+<script lang="ts" context="module">
   import { fade } from 'svelte/transition';
+  import { page } from '$app/stores';
+  import { fetchGhostArticle } from '../../shared/ghost_service'
+  import { Article } from '../../types/article';
+
   export async function load({ fetch, params }) {
     const slug = params.slug;
-    const res = await fetch(
-      `https://efp-peinture.ghost.io/ghost/api/v4/content/posts/slug/${slug}/?key=8f8c4ecc07f4f673e96b16176a`
-    );
-    const datas = await res.json();
-    const article = datas.posts[0];
-
-    if (res.ok) {
+    const article:Article = await fetchGhostArticle(slug);
+    if(article){
       return {
         props: {
-          article,
-        },
-      };
-    } else {
-      return {
-        error: res.message,
-      };
+          article: article
+        }
+      }
     }
   }
-</script>
 
+</script>
 <script>
-  export /**
-   * @type {{ title: any; }}
-   */
-  let article;
+	export let article;
 </script>
 
 <svelte:head>
