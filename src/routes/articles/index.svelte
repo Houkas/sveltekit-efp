@@ -1,7 +1,23 @@
-<script context="module">
+<script context="module" lang="ts">
+
   import { fade } from "svelte/transition";
-  import { fetchGhostArticles } from "../../shared/ghost_service";
-  import {fetchStrapiArticles} from "../../shared/strapi_service";
+  import { fetchStrapiArticles } from "../../shared/strapi_service";
+  import { Article } from "../../types/article";
+
+  export async function load() {
+    const articles: Article[] = await fetchStrapiArticles();
+    if (articles) {
+      return {
+        props: {
+          articles: articles,
+        },
+      };
+    }
+  }
+</script>
+
+<script>
+  export let articles;
 </script>
 
 <svelte:head>
@@ -15,19 +31,15 @@
 <div transition:fade class="articles container mx-auto h-screen bg-gray-200">
   <p>Liste de tous les articles</p>
   <ul>
-    {#await fetchStrapiArticles()}
-      <p>... Waiting</p>
-    {:then articles}
+    {#if articles}
       {#each articles as article}
         <li class="m-2 p-2">
-          <a class="m-2 p-2" href={`/articles/${article.slug}`}
-            >{article.title}</a
-          >
+          <a class="m-2 p-2" href={`/articles/${article.attributes.slug}`}>
+            {article.attributes.title}
+          </a>
         </li>
       {/each}
-    {:catch}
-      <p>Erreur api</p>
-    {/await}
+    {/if}
   </ul>
 </div>
 

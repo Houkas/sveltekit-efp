@@ -26,7 +26,7 @@
 <div transition:fade class="content-container" data-scroll-container>
 
   <section class="container-content " data-scroll-section>
-    <div class="content-video  mx-auto">
+    <div class="content-video mx-auto">
       <!--<img src="/bg-home-efp.jpg" alt="vidéo présentation EFP">-->
       <video autoplay loop muted>
         <source src="/intro2.mp4" type="video/mp4" />

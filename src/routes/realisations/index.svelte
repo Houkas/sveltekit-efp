@@ -1,35 +1,25 @@
 <script context="module" lang="ts">
   import { fade } from 'svelte/transition';
-  export async function load({ fetch }) {
-    const res = await fetch(
-      "https://efp-peinture.ghost.io/ghost/api/v4/content/posts?key=8f8c4ecc07f4f673e96b16176a&filter=tag:realisation"
-    );
+  import { fetchStrapiRealisations } from '../../shared/strapi_service';
+  import { Realisation } from '../../types/realisation';
 
-    const datas = await res.json();
-    const realisations = datas.posts;
-    if (res.ok) {
+  export async function load() {
+    const realisations: Realisation[] = await fetchStrapiRealisations();
+    if (realisations) {
       return {
         props: {
-          realisations,
+          realisations: realisations,
         },
-      };
-    } else {
-      return {
-        error: res.message,
       };
     }
   }
 </script>
 
 <script>
-  /**
-   * @type {any[]}
-   */
-  export let realisations = [];
+  export let realisations;
 </script>
 
 <svelte:head>
-  <!-- elements go here -->
   <title>Realisations EFP</title>
   <meta
     name="description"
@@ -42,7 +32,9 @@
   <ul>
     {#each realisations as realisation}
       <li class="m-2 p-2">
-        <a class="m-2 p-2" href={`/realisations/${realisation.slug}`}>{realisation.title}</a>
+        <a class="m-2 p-2" href={`/realisations/${realisation.attributes.slug}`}>
+          {realisation.attributes.title}
+        </a>
       </li>
     {/each}
   </ul>

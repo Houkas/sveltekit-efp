@@ -1,4 +1,12 @@
 export type Partenaire = {
-    nom: string;
-    logo: string;
+    attibutes: {
+        nom: string;
+        logo: {
+            data: {
+                attributes: {
+                    url: string;
+                }
+            }
+        };
+    }
 }

@@ -1,12 +1,11 @@
 <script lang="ts" context="module">
   import { fade } from 'svelte/transition';
-  import { page } from '$app/stores';
-  import { fetchGhostArticle } from '../../shared/ghost_service'
-  import { Article } from '../../types/article';
+  import { fetchStrapiArticle } from '../../shared/strapi_service'
+  import type { Article } from '../../types/article';
 
-  export async function load({ fetch, params }) {
+  export async function load({ params }) {
     const slug = params.slug;
-    const article:Article = await fetchGhostArticle(slug);
+    const article:Article = await fetchStrapiArticle(slug);
     if(article){
       return {
         props: {
@@ -15,21 +14,21 @@
       }
     }
   }
-
 </script>
+
 <script>
 	export let article;
 </script>
 
 <svelte:head>
   <title>Article</title>
-  <meta name="description" content={article.meta_description} />
+  <meta name="description" content="$"/>
 </svelte:head>
 
 <div transition:fade class="article container mx-auto mt-7 bg-gray-200 min-h-screen">
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
-    <h1>{article.title}</h1>
-    {@html article.html}
+    <h1>{article.attributes.title}</h1>
+    {@html article.attributes.body}
   </section>
 </div>
 
