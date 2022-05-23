@@ -5,12 +5,12 @@
   import { urlStrapiEfpDEV } from '../shared/config';
 
   export async function load() {
-    const partenaires: Partenaire[] = await fetchStrapiPartenaires();
+    const partenaires = await fetchStrapiPartenaires();
     if (partenaires) {
       return {
         props: {
           partenaires: partenaires,
-        },
+        }
       };
     }
   }
@@ -40,7 +40,6 @@
 
 <style>
   .partenaires {
-    /*min-height: 100vh;*/
     margin-top: 70px;
   }
 </style>

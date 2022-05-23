@@ -1,31 +1,32 @@
 <script lang="ts" context="module">
-  import { fade } from 'svelte/transition';
-  import { fetchStrapiArticle } from '../../shared/strapi_service'
-  import type { Article } from '../../types/article';
+  import { fade } from "svelte/transition";
+  import { fetchStrapiArticle } from "../../shared/strapi_service";
+  import type { Article } from "../../types/article";
 
   export async function load({ params }) {
     const slug = params.slug;
-    const article:Article = await fetchStrapiArticle(slug);
-    if(article){
-      return {
-        props: {
-          article: article
-        }
-      }
-    }
+    const article: Article = await fetchStrapiArticle(slug);
+    return {
+      props: {
+        article: article,
+      },
+    };
   }
 </script>
 
 <script>
-	export let article;
+  export let article;
 </script>
 
 <svelte:head>
   <title>Article</title>
-  <meta name="description" content="$"/>
+  <meta name="description" content="$" />
 </svelte:head>
 
-<div transition:fade class="article container mx-auto mt-7 bg-gray-200 min-h-screen">
+<div
+  transition:fade
+  class="article container mx-auto mt-7 bg-gray-200 min-h-screen"
+>
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
     <h1>{article.attributes.title}</h1>
     {@html article.attributes.body}
@@ -37,7 +38,7 @@
     section {
       margin-top: 70px;
     }
-    :global(.kg-gallery-row){
+    :global(.kg-gallery-row) {
       display: flex;
       flex-direction: row;
     }

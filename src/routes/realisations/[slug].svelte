@@ -3,17 +3,15 @@
   import { fetchStrapiRealisation } from "../../shared/strapi_service";
   import { Realisation } from "../../types/realisation";
   import { onMount } from "svelte";
-  
+
   export async function load({ params }) {
     const slug = params.slug;
     const realisation: Realisation = await fetchStrapiRealisation(slug);
-    if (realisation) {
-      return {
-        props: {
-          realisation: realisation,
-        },
-      };
-    }
+    return {
+      props: {
+        realisation: realisation,
+      },
+    };
   }
 </script>
 
