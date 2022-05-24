@@ -22,9 +22,6 @@
   },
   "type": "module",
   "dependencies": {
-    "gsap": "^3.10.4",
-    "locomotive-scroll": "^4.1.4",
-    "sass": "^1.51.0",
-    "smooth-scrollbar": "^8.7.4"
+    "sass": "^1.51.0"
   }
 }

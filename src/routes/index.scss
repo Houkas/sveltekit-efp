@@ -4,6 +4,12 @@
     z-index: 5;
   }
 
+  .title-revealed {
+    opacity: 0;
+    animation: text-visible 1s linear forwards;
+    animation-delay: 1.5s;
+  }
+
   h1 {
     position: absolute;
     z-index: 10;
@@ -11,13 +17,26 @@
     font-style: normal;
     font-weight: 900;
     text-transform: uppercase;
-    color: #26fff4;
+    color: $bleuClair;
     left: 19%;
 
     .h-efp {
       font-size: 140px;
       line-height: 110px;
       letter-spacing: 0.25em;
+    }
+
+    .has-animation::after {
+      content: "";
+      top: 0;
+      left: 0;
+      position: absolute;
+      width: 0%;
+      height: 100%;
+      background: $bleuClair;
+      // only one time animation
+      animation: effect-block 2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+      animation-delay: .1s;
     }
 
     .h-entreprise {
@@ -108,9 +127,29 @@
   }
 }
 
+.content-realisation {
+  a h2 {
+    text-transform: uppercase;
+    margin: 10px 0 10px 0;
+    font-size: 40px;
+    color: $vertFonce;
+    font-weight: bold;
+    z-index: 5;
+    font-size: 80px;
+    line-height: 0px;
+    letter-spacing: 0.16em;
+  }
+  a h2::before{
+    content:"";
+    position: absolute;
+
+  }
+}
+
 // CSS COMMUN // 
 .container-content {
   width: 100%;
+
   .indic {
     position: absolute;
     transform-origin: 0 0;
@@ -174,9 +213,11 @@
       display: none;
     }
   }
+
   .content-box {
     padding: 0;
   }
+
   .dashed::after {
     right: 0;
   }
@@ -186,6 +227,7 @@
       top: 70px;
       z-index: 11;
     }
+
     h1 {
       font-style: normal;
       font-weight: 900;
@@ -196,15 +238,18 @@
       bottom: unset;
       z-index: 12;
       margin-top: 10px;
+
       .h-efp {
         font-size: 50px;
         letter-spacing: .875em;
         line-height: 35px;
       }
+
       .h-entreprise {
         font-size: 22px;
         line-height: 20px;
       }
+
       .h-peinture {
         font-size: 22px;
         line-height: 20px;
@@ -219,23 +264,28 @@
       height: 65vh;
       width: 55px;
     }
+
     .grey-rec {
       width: 100%;
       padding: 40px;
       left: -1.1em;
+
       h2 {
         font-size: 25px;
       }
+
       p {
         font-size: 12px;
       }
     }
+
     .grey-rec::before {
       height: 30vh;
       width: 30vh;
       right: -15%;
       top: -15%;
     }
+
     .depot {
       display: none;
     }
@@ -247,7 +297,35 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
+  }
+}
+
+@keyframes text-visible {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes effect-block {
+  0% {
+    left: 0;
+    width: 0%;
+  }
+
+  50% {
+    left: 0;
+    width: 100%;
+  }
+
+  100% {
+    left: 100%;
+    width: 0%;
   }
 }
