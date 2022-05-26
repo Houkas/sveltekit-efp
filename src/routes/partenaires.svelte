@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { fade } from "svelte/transition";
   import { fetchStrapiPartenaires } from "../shared/strapi_service";
-  import { Partenaire } from "../types/partenaire";
+  import type { Partenaire } from "../types/partenaire";
   import { urlStrapiEfpDEV } from '../shared/config';
 
   export async function load() {
@@ -16,8 +16,8 @@
   }
 </script>
 
-<script>
-  export let partenaires;
+<script lang="ts">
+  export let partenaires:Partenaire[];
 </script>
 
 <svelte:head>

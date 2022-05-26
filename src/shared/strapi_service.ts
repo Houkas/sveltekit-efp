@@ -1,8 +1,8 @@
-import { Article } from '../types/article';
-import { Partenaire } from '../types/partenaire';
-import { Realisation } from '../types/realisation';
+import type { Article } from '../types/article';
+import type { Partenaire } from '../types/partenaire';
+import type { Realisation } from '../types/realisation';
 import { urlStrapiEfpDEV } from '../shared/config';
-import Partenaires from '../routes/partenaires.svelte';
+
 
 export const fetchStrapiArticles = async (): Promise<Article[]> => {
     const res = await fetch(`${urlStrapiEfpDEV}/api/articles?populate=*`);

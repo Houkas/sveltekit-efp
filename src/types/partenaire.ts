@@ -1,6 +1,6 @@
 export type Partenaire = {
-    attibutes: {
-        nom: string;
+    attributes: {
+        name: string;
         logo: {
             data: {
                 attributes: {

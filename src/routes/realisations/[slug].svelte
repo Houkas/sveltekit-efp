@@ -1,10 +1,12 @@
 <script context="module" lang="ts">
   import { fade } from "svelte/transition";
   import { fetchStrapiRealisation } from "../../shared/strapi_service";
-  import { Realisation } from "../../types/realisation";
+  import type { Realisation } from "../../types/realisation";
   import { onMount } from "svelte";
+  import type { Load } from "@sveltejs/kit";
+  import { page } from '$app/stores';
 
-  export async function load({ params }) {
+  export const load:Load= async({ params }) =>{
     const slug = params.slug;
     const realisation: Realisation = await fetchStrapiRealisation(slug);
     return {
@@ -15,13 +17,18 @@
   }
 </script>
 
-<script>
-  export let realisation;
+<script lang="ts">
+  export let realisation:Realisation;
 </script>
 
 <svelte:head>
   <title>Realisation</title>
-  <meta name="description" content={realisation.attributes.meta_description} />
+  {#if realisation}
+    <meta name="description" content={realisation.attributes.meta_description} />
+    {:else}
+    <meta name="description" content="Réalisation travaux de peinture entreprise EFP" />
+  {/if}
+
 </svelte:head>
 
 <div
@@ -29,8 +36,12 @@
   class="realisation container mx-auto mt-7 bg-gray-200 min-h-screen"
 >
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
-    <h1>{realisation.attributes.title}</h1>
-    {@html realisation.attributes.body}
+    {#if realisation}
+      <h1>{realisation.attributes.title}</h1>
+      {@html realisation.attributes.body}
+      {:else}
+      <p>Chargement du contenu...</p>
+    {/if}
   </section>
 </div>
 

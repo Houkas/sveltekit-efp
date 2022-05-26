@@ -2,7 +2,7 @@
 
   import { fade } from "svelte/transition";
   import { fetchStrapiArticles } from "../../shared/strapi_service";
-  import { Article } from "../../types/article";
+  import type { Article } from "../../types/article";
 
   export async function load() {
     const articles: Article[] = await fetchStrapiArticles();
@@ -16,8 +16,8 @@
   }
 </script>
 
-<script>
-  export let articles;
+<script lang="ts">
+  export let articles: Article[];
 </script>
 
 <svelte:head>

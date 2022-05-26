@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import { fade } from 'svelte/transition';
   import { fetchStrapiRealisations } from '../../shared/strapi_service';
-  import { Realisation } from '../../types/realisation';
+  import type { Realisation } from '../../types/realisation';
 
   export async function load() {
     const realisations: Realisation[] = await fetchStrapiRealisations();
@@ -15,8 +15,8 @@
   }
 </script>
 
-<script>
-  export let realisations;
+<script lang="ts">
+  export let realisations: Realisation[];
 </script>
 
 <svelte:head>
