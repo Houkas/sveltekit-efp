@@ -97,13 +97,13 @@
     >
       <div class="h-screen w-1/3 flex flex-row items-center">
         <a href="/realisations" class="z-10">
-          {#if y >= 1600 && width > 1280}
+          {#if y >= 1200 && width > 1280}
             <div
               transition:fade
               class="cicle-gradient absolute left-[40px] block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-20vh]"
             />
             <h2
-              class={y >= 1600 && width > 1280 ? "anim-txt-lft" : "opacity-0"}
+              class={y >= 1200 && width > 1280 ? "anim-txt-lft" : "opacity-0"}
               out:fade
             >
               Réalisations
