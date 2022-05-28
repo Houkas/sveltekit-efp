@@ -55,127 +55,6 @@
 
 }
 
-.content-desc {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-
-  .yellow-rec {
-    width: 125px;
-    height: 88vh;
-    background-color: $jaune;
-    position: relative;
-  }
-  .anim-bloc-down{
-    animation: slideDown ease .4s forwards .6s;
-  }
-
-  .grey-rec {
-    padding: 50px;
-    width: 50%;
-    background-color: $vertGris;
-    position: relative;
-    left: -3.75em;
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: center;
-
-    h2 {
-      text-transform: uppercase;
-      margin: 10px 0 10px 0;
-      font-size: 40px;
-      color: $vertFonce;
-      font-weight: bold;
-      z-index: 5;
-    }
-
-    p {
-      margin-bottom: 20px;
-      z-index: 5;
-    }
-  }
-
-  .grey-rec::before {
-    content: "";
-    position: absolute;
-    height: 60vh;
-    width: 60vh;
-    border-radius: 50%;
-    border: dashed 2px $vertGris;
-    right: -25%;
-    top: -25%;
-    animation: rotation 60s infinite linear;
-  }
-
-  .depot {
-    width: 420px;
-    height: 200px;
-    z-index: 5;
-  }
-
-  .indic-desc {
-    position: absolute;
-    transform-origin: 0 0;
-    transform: rotate(90deg);
-    text-transform: uppercase;
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    color: $vertFonce;
-    right: -5em;
-    margin-top: -5em;
-    font-size: 11.5px;
-    padding: 5px;
-    z-index: 11;
-    background-color: $vertGris
-  }
-}
-
-.content-realisation {
-  a{
-    h2{
-      text-transform: uppercase;
-      margin: 10px 0 10px 0;
-      font-size: 40px;
-      color: $vertFonce;
-      font-weight: bold;
-      z-index: 10;
-      font-size: 80px;
-      line-height: 0px;
-      letter-spacing: 0.16em;
-      opacity: 0;
-    }
-    .anim-txt-lft{
-      animation: slideLeftToRight ease .4s forwards .6s;
-    }
-  } 
-
-  /*a h2::before {
-    display: block;
-    position: absolute;
-    left:40px;
-    content: "";
-    background-image: url("/circle_degrade.svg");
-    height: 40vh;
-    width: 40vh;
-    z-index: -1;
-    margin-top: -20vh;
-  }*/
-  .indic-rea {
-    position: absolute;
-    transform-origin: 0 0;
-    transform: rotate(90deg);
-    text-transform: uppercase;
-    font-family: 'Zen Kaku Gothic New', sans-serif;
-    color: $vertFonce;
-    right: -1.75em;
-    margin-top: -5em;
-    font-size: 11.5px;
-    padding: 5px;
-    z-index: 11;
-    background-color: $vertGris
-  }
-}
-
 // CSS COMMUN // 
 .container-content {
   width: 100%;
@@ -250,6 +129,7 @@
     right: 0;
   }
 
+  //CSS CONTENU
   .content-video {
     img {
       top: 70px;
@@ -287,50 +167,9 @@
     }
   }
 
-  .content-desc {
-    .yellow-rec {
-      height: 65vh;
-      width: 55px;
-    }
-
-
-    .grey-rec {
-      width: 100%;
-      padding: 40px;
-      left: -1.1em;
-
-      h2 {
-        font-size: 25px;
-      }
-
-      p {
-        font-size: 12px;
-      }
-    }
-
-    .grey-rec::before {
-      height: 30vh;
-      width: 30vh;
-      right: -15%;
-      top: -15%;
-    }
-
-    .depot {
-      display: none;
-    }
-  }
 }
 
 // ANIMATIONS //
-@keyframes rotation {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
-  }
-}
 @keyframes slideUp {
   0% {
     transform: translateY(0);
@@ -339,24 +178,6 @@
   100% {
     transform: translateY(-40px);
     opacity:1;
-  }
-}
-@keyframes slideDown {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 88vh;
-  }
-}
-@keyframes slideLeftToRight {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(40px);opacity:1;
-    opacity: 1;
   }
 }
 
