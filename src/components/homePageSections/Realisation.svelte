@@ -13,7 +13,7 @@
     {#if yScrollUser >= 1200 && deviceWidth > 1280}
       <div
         transition:fade
-        class="cicle-gradient absolute left-[40px] block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-20vh]"
+        class="cicle-gradient absolute left-[40px] block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-10vh]"
       />
       <h2
         class={yScrollUser >= 1200 && deviceWidth > 1280 ? "anim-txt-lft" : "opacity-0"}
@@ -47,7 +47,6 @@
       font-weight: bold;
       z-index: 10;
       font-size: 80px;
-      line-height: 0px;
       letter-spacing: 0.16em;
       opacity: 0;
     }

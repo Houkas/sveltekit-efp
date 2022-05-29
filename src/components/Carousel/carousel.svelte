@@ -22,10 +22,10 @@
     <img transition:fade {src} alt="" class="img-carousel z-5" />
 
     <div class=" flex flex-row items-end justify-between">
-      <button class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] ml-[-2.5em] " on:click={prev}>
+      <button class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] ml-[-1.5em] mt-[-.5em] radius-5" on:click={prev}>
         <img class=" " src="/arrow_left.svg" alt="précédent" />
       </button>
-      <button class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative mr-[-2.5em] " on:click={next}>
+      <button class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative mr-[-1.5em] mt-[-.5em] radius-5" on:click={next}>
         <img class=" scale-x-[-1] " src="/arrow_left.svg" alt="suivant" />
       </button>
     </div>
@@ -36,7 +36,9 @@
   .container-carousel{
     width: 55vw;
     button{
+      border-radius: 20px;
       background-color:$vertGris;
+      //background: linear-gradient(51.03deg, rgba(248, 241, 88, 0) -10.35%, rgba(248, 241, 88, 0.2) -5.3%, rgba(178, 236, 194, 0.3722) 23.92%, rgba(153, 243, 255, 0.6459) 60.2%, rgba(130, 247, 255, 0.8643) 72.08%, #79FFFF 85.02%, #79FFFF 85.03%);
     }
     .arrow-icon::before{
       position: absolute;

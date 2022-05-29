@@ -2,6 +2,7 @@
   import { fade } from "svelte/transition";
   import Realisation from "../components/homePageSections/Realisation.svelte";
   import Description from "../components/homePageSections/Description.svelte"
+  import LastArticles from "../components/homePageSections/LastArticles.svelte";
   $: y = 0;
   $: width = 0;
   $: height = 0;
@@ -60,7 +61,9 @@
   </section>
 
   <section class="container-content">
-    <div class="dashed dashed-top min-h-screen mx-auto content-box" />
+    <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-row items-center relative z-20">
+      <LastArticles yScrollUser={y} deviceWidth={width}/>
+    </div>
   </section>
 </div>
 
