@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
-
-  import { fade } from "svelte/transition";
+  /*import { fade } from "svelte/transition";
   import { fetchStrapiArticles } from "../../shared/strapi_service";
   import type { Article } from "../../types/article";
 
@@ -13,11 +12,24 @@
         },
       };
     }
-  }
+  }*/
+
 </script>
 
 <script lang="ts">
+  
+  import { fade } from "svelte/transition";
+  import type { Article } from "src/types/article";
+  import { apiArticlesData } from '../../shared/store';
+
   export let articles: Article[];
+
+  apiArticlesData.subscribe(values => {
+    articles = values
+  })
+  if(!articles){
+    // appeler la route api pour fetch tous les articles
+  }
 </script>
 
 <svelte:head>

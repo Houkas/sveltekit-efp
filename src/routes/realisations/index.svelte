@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { fade } from 'svelte/transition';
+  /*
   import { fetchStrapiRealisations } from '../../shared/strapi_service';
   import type { Realisation } from '../../types/realisation';
 
@@ -12,11 +12,17 @@
         },
       };
     }
-  }
+  }*/
 </script>
 
 <script lang="ts">
+  import { fade } from 'svelte/transition';
+  import type { Realisation } from '../../types/realisation';
+  import { apiRealisationsData } from '../../shared/store'
   export let realisations: Realisation[];
+  apiRealisationsData.subscribe(values => {
+    realisations = values;
+  });
 </script>
 
 <svelte:head>

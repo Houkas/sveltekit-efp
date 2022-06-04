@@ -1,6 +1,25 @@
+<script context="module" lang="ts">
+  import { fetchStrapiArticles, fetchStrapiRealisations } from "../shared/strapi_service";
+  import type { Article } from "../types/article";
+  import type { Realisation } from "../types/realisation";
+
+  export async function load() {
+    const articles: Article[] = await fetchStrapiArticles();
+    const realisations: Realisation[] = await fetchStrapiRealisations();
+    if (articles && realisations) {
+      return {
+        props: {
+          articles: articles,
+          realisations: realisations,
+        },
+      };
+    }
+  }
+</script>
+
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import Realisation from "../components/homePageSections/Realisation.svelte";
+  import LastRealisations from "../components/homePageSections/LastRealisations.svelte";
   import Description from "../components/homePageSections/Description.svelte"
   import LastArticles from "../components/homePageSections/LastArticles.svelte";
   $: y = 0;
@@ -56,7 +75,7 @@
     <div
       class="dashed dashed-top min-h-screen mx-auto content-box flex flex-row items-center"
     >
-      <Realisation yScrollUser={y} deviceWidth={width} />
+      <LastRealisations yScrollUser={y} deviceWidth={width} />
     </div>
   </section>
 
