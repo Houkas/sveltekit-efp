@@ -22,10 +22,12 @@
   import LastRealisations from "../components/homePageSections/LastRealisations.svelte";
   import Description from "../components/homePageSections/Description.svelte"
   import LastArticles from "../components/homePageSections/LastArticles.svelte";
+  export let realisations:Realisation[];
   $: y = 0;
   $: width = 0;
   $: height = 0;
   const isAnimated: boolean = y > 25 ? true : false;
+
 </script>
 
 <svelte:head>

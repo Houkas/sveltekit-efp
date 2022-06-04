@@ -3,8 +3,10 @@
   import { fade, slide } from "svelte/transition";
   import { expoInOut } from "svelte/easing";
   import Carousel from "../Carousel/carousel.svelte";
+
   export let yScrollUser: number;
   export let deviceWidth: number;
+
 
 </script>
 

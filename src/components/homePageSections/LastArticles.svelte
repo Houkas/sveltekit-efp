@@ -1,8 +1,31 @@
 <script lang="ts">
   import { fade, slide } from "svelte/transition";
   import { expoInOut } from "svelte/easing";
+  import { apiArticlesData } from "../../shared/store";
+  import type { Article } from "src/types/article";
+  import { urlStrapiEfpDEV } from "../../shared/config";
+
   export let yScrollUser: number;
   export let deviceWidth: number;
+
+  let articles: Article[] = [];
+  let lastArticlesImg: string[] = [];
+
+  apiArticlesData.subscribe((values) => {
+    articles = values;
+  });
+
+  articles = articles.sort(
+    (a, b) =>
+      Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt)
+  );
+  articles = articles.slice(0, 3);
+
+  articles.forEach((article) => {
+    lastArticlesImg.push(
+      urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url
+    );
+  });
 </script>
 
 <div class="h-screen w-1/3 flex flex-row items-center">
@@ -30,7 +53,39 @@
       />
     {/if}
     <div class="flex flex-col img-container">
-      {#if yScrollUser >= 1745 && deviceWidth > 1280}
+      {#each articles as article, i}
+        {#if i == 0 && yScrollUser >= 1745 && deviceWidth > 1280}
+          <a href={`/articles/${article.attributes.slug}`}>
+            <img
+              transition:fade
+              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
+              class="max-w-xs"
+              alt=""
+            />
+          </a>
+        {/if}
+        {#if i == 1 && yScrollUser >= 1965 && deviceWidth > 1280}
+          <a href={`/articles/${article.attributes.slug}`}>
+            <img
+              transition:fade
+              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
+              class="max-w-xs"
+              alt=""
+            />
+          </a>
+        {/if}
+        {#if i == 2 && yScrollUser >= 2145 && deviceWidth > 1280}
+          <a href={`/articles/${article.attributes.slug}`}>
+            <img
+              transition:fade
+              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
+              class="max-w-xs"
+              alt=""
+            />
+          </a>
+        {/if}
+      {/each}
+      <!--{#if yScrollUser >= 1745 && deviceWidth > 1280}
         <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
       {/if}
       {#if yScrollUser >= 1965 && deviceWidth > 1280}
@@ -38,7 +93,7 @@
       {/if}
       {#if yScrollUser >= 2145 && deviceWidth > 1280}
         <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
-      {/if}
+      {/if}-->
     </div>
   </div>
 </div>
@@ -73,10 +128,10 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  .img-container img:nth-child(1) .img-container img:nth-child(3) {
+  .img-container a:nth-child(1) .img-container img:nth-child(3) {
     margin-left: 5em;
   }
-  .img-container img:nth-child(2) {
+  .img-container a:nth-child(2) {
     margin-left: -5em;
   }
   .indic-last-articles {
