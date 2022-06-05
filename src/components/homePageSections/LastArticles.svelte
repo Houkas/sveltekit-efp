@@ -20,12 +20,12 @@
       Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt)
   );
   articles = articles.slice(0, 3);
-
-  articles.forEach((article) => {
+  console.log(articles)
+  /*articles.forEach((article) => {
     lastArticlesImg.push(
       urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url
     );
-  });
+  });*/
 </script>
 
 <div class="h-screen w-1/3 flex flex-row items-center">

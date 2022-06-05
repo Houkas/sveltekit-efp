@@ -4,7 +4,7 @@
   import type { Realisation } from '../../types/realisation'
   import { fade, slide } from "svelte/transition";
   import { urlStrapiEfpDEV } from '../../shared/config';
-import { set_attributes } from 'svelte/internal';
+  import { set_attributes } from 'svelte/internal';
 
   let realisations: Realisation[] = [];
 
@@ -54,7 +54,7 @@ import { set_attributes } from 'svelte/internal';
   }
 </script>
 
-{#each realisations as real (index)}
+{#each [realisations[index]] as real (index)}
   <div class="container-carousel absolute">
     <a href="{'/realisations/'+real.attributes.slug}" class="link">
       <img
@@ -67,6 +67,7 @@ import { set_attributes } from 'svelte/internal';
     </a>
 
     <div
+      transition:fade
       class="nav-caroussel flex flex-row items-end justify-between {isNavHidden ==
       true
         ? 'opacity-0'

@@ -45,10 +45,10 @@
   bind:innerWidth={width}
 />
 
-<!--Affichage du scroll y
+<!--Affichage du scroll y-->
 <div class="fixed left-0 top-0 z-20 text-red-500">Y : {y}</div>
 <div class="fixed left-0 top-10 z-20 text-red-500">Height : {height}</div>
-<div class="fixed left-0 top-20 z-20 text-red-500">Width : {width}</div>-->
+<div class="fixed left-0 top-20 z-20 text-red-500">Width : {width}</div>
 
 <div transition:fade class="content-container">
   <section class="container-content ">
