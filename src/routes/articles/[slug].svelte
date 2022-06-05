@@ -1,9 +1,11 @@
 <script lang="ts" context="module">
+  import type { Load } from "@sveltejs/kit";
+
   import { fade } from "svelte/transition";
   import { fetchStrapiArticle } from "../../shared/strapi_service";
   import type { Article } from "../../types/article";
 
-  export async function load({ params }) {
+  export const load:Load = async({ params }) =>{
     const slug = params.slug;
     const article: Article = await fetchStrapiArticle(slug);
     return {
@@ -14,8 +16,8 @@
   }
 </script>
 
-<script>
-  export let article;
+<script lang="ts">
+  export let article: Article;
 </script>
 
 <svelte:head>
@@ -24,12 +26,15 @@
 </svelte:head>
 
 <div
-  transition:fade
   class="article container mx-auto mt-7 bg-gray-200 min-h-screen"
 >
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
-    <h1>{article.attributes.title}</h1>
-    {@html article.attributes.body}
+    {#if article}
+      <h1>{article.attributes.title}</h1>
+      {@html article.attributes.body}
+      {:else}
+      <p>Chargement du contenu...</p>
+    {/if}
   </section>
 </div>
 

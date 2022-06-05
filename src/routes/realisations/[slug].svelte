@@ -2,11 +2,9 @@
   import { fade } from "svelte/transition";
   import { fetchStrapiRealisation } from "../../shared/strapi_service";
   import type { Realisation } from "../../types/realisation";
-  import { onMount } from "svelte";
   import type { Load } from "@sveltejs/kit";
-  import { page } from '$app/stores';
 
-  export const load:Load= async({ params }) =>{
+  export const load:Load = async({ params }) =>{
     const slug = params.slug;
     const realisation: Realisation = await fetchStrapiRealisation(slug);
     return {
@@ -32,7 +30,6 @@
 </svelte:head>
 
 <div
-  transition:fade
   class="realisation container mx-auto mt-7 bg-gray-200 min-h-screen"
 >
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">

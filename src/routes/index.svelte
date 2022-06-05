@@ -23,10 +23,11 @@
   import Description from "../components/homePageSections/Description.svelte"
   import LastArticles from "../components/homePageSections/LastArticles.svelte";
   export let realisations:Realisation[];
+  export let articles:Article[];
   $: y = 0;
   $: width = 0;
   $: height = 0;
-  const isAnimated: boolean = y > 25 ? true : false;
+  //const isAnimated: boolean = y > 25 ? true : false;
 
 </script>
 

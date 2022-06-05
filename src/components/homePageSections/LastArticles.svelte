@@ -54,18 +54,16 @@
     {/if}
     <div class="flex flex-col img-container">
       {#each articles as article, i}
-        {#if i == 0 && yScrollUser >= 1745 && deviceWidth > 1280}
-          <a href={`/articles/${article.attributes.slug}`}>
-            <img
-              transition:fade
-              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
-              class="max-w-xs"
-              alt=""
-            />
-          </a>
-        {/if}
-        {#if i == 1 && yScrollUser >= 1965 && deviceWidth > 1280}
-          <a href={`/articles/${article.attributes.slug}`}>
+        <a href={"/articles/" + article.attributes.slug}>
+          <img
+            src={urlStrapiEfpDEV +
+              article.attributes.miniature.data.attributes.url}
+            class="max-w-xs"
+            alt=""
+          />
+        </a>
+        <!--{#if i == 1 && yScrollUser >= 1965 && deviceWidth > 1280}
+          <a href="{'/articles/'+article.attributes.slug}">
             <img
               transition:fade
               src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
@@ -75,7 +73,7 @@
           </a>
         {/if}
         {#if i == 2 && yScrollUser >= 2145 && deviceWidth > 1280}
-          <a href={`/articles/${article.attributes.slug}`}>
+          <a href="{'/articles/'+article.attributes.slug}">
             <img
               transition:fade
               src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
@@ -83,7 +81,7 @@
               alt=""
             />
           </a>
-        {/if}
+        {/if}-->
       {/each}
       <!--{#if yScrollUser >= 1745 && deviceWidth > 1280}
         <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
