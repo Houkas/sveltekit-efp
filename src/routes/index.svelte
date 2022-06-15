@@ -22,6 +22,7 @@
   import LastRealisations from "../components/homePageSections/LastRealisations.svelte";
   import Description from "../components/homePageSections/Description.svelte"
   import LastArticles from "../components/homePageSections/LastArticles.svelte";
+
   export let realisations:Realisation[];
   export let articles:Article[];
   $: y = 0;

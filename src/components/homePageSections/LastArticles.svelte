@@ -4,6 +4,7 @@
   import { apiArticlesData } from "../../shared/store";
   import type { Article } from "src/types/article";
   import { urlStrapiEfpDEV } from "../../shared/config";
+  import Blob from "../Blob.svelte";
 
   export let yScrollUser: number;
   export let deviceWidth: number;
@@ -41,7 +42,9 @@
         <span class="ml-5">Dernières</span>
         <span class="ml-10">Actualités</span>
       </h2>
+      
     {/if}
+    <Blob></Blob>
   </a>
 </div>
 <div class="h-screen w-2/3 flex flex-row items-center justify-center">
@@ -55,12 +58,16 @@
     <div class="flex flex-col img-container">
       {#each articles as article, i}
         <a href={"/articles/" + article.attributes.slug}>
-          <img
-            src={urlStrapiEfpDEV +
-              article.attributes.miniature.data.attributes.url}
-            class="max-w-xs"
-            alt=""
-          />
+          <div class="relative">
+            <div class="relative max-w-xs overflow-hidden">
+              <img src={urlStrapiEfpDEV +
+                article.attributes.miniature.data.attributes.url} alt="" class="object-cover w-full h-full " />
+              <div class="absolute w-full h-[84%] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.5] top-5 flex items-center justify-center">
+                <h3 class="text-[#004E63]  text-2xl">{article.attributes.title}</h3>
+              </div>
+            </div>
+
+          </div>
         </a>
         <!--{#if i == 1 && yScrollUser >= 1965 && deviceWidth > 1280}
           <a href="{'/articles/'+article.attributes.slug}">
