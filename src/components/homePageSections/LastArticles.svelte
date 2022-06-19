@@ -8,9 +8,18 @@
 
   export let yScrollUser: number;
   export let deviceWidth: number;
+  let yScrollUserTrigger: number;
+  let yScrollUserTriggerBar: number;
+
+  if (deviceWidth < 640) {
+    yScrollUserTrigger = 1275;
+    yScrollUserTriggerBar = 1320
+  } else if (deviceWidth > 1024) {
+    yScrollUserTrigger = 1800;
+    yScrollUserTriggerBar = 1800;
+  }
 
   let articles: Article[] = [];
-  let lastArticlesImg: string[] = [];
 
   apiArticlesData.subscribe((values) => {
     articles = values;
@@ -21,84 +30,74 @@
       Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt)
   );
   articles = articles.slice(0, 3);
-  console.log(articles)
-  /*articles.forEach((article) => {
-    lastArticlesImg.push(
-      urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url
-    );
-  });*/
+  console.log(articles);
 </script>
 
-<div class="h-screen w-1/3 flex flex-row items-center">
+<div
+  class="lg:h-screen w-screen lg:w-1/3 flex flex-col lg:flex-row items-center justify-center"
+>
   <a href="/articles">
-    {#if yScrollUser >= 1800 && deviceWidth > 1280}
+    {#if yScrollUser >= yScrollUserTrigger && deviceWidth > 1024}
       <h2
-        class="{yScrollUser >= 1800 && deviceWidth > 1280
+        class="{yScrollUser >= yScrollUserTrigger
           ? 'anim-txt-lft'
-          : 'opacity-0'} leading-20 flex flex-col"
+          : 'opacity-0'} leading-20 flex flex-row lg:flex-col"
         out:fade
       >
-        <span class="ml-1">Nos</span>
-        <span class="ml-5">Dernières</span>
-        <span class="ml-10">Actualités</span>
+        <span class="lg:ml-1">Nos</span>
+        <span class="ml-1 lg:ml-5">Dernières</span>
+        <span class="ml-1 lg:ml-10">Actualités</span>
       </h2>
-      
+      <Blob />
+    {:else}
+      <div
+        transition:fade
+        class="cicle-gradient absolute left-[70px] block content-[''] bg-[url('/circle_degrade.svg')] w-[5vh] h-[5vh] z-[-1] mt-[1.5vh] "
+      />
+      <h2
+        class="{yScrollUser >= yScrollUserTrigger
+          ? 'anim-txt-lft'
+          : 'opacity-0'}"
+        out:fade
+      >
+        Nos dernères actualités
+      </h2>
     {/if}
-    <Blob></Blob>
+    
   </a>
 </div>
-<div class="h-screen w-2/3 flex flex-row items-center justify-center">
+<div
+  class="h-screen w-screen lg:w-2/3 flex flex-row items-center justify-center"
+>
   <div class="h-screen flex items-start justify-center">
-    {#if yScrollUser >= 1600 && deviceWidth > 1280}
+    {#if yScrollUser >= yScrollUserTriggerBar}
       <div
         transition:slide={{ delay: 250, duration: 1000, easing: expoInOut }}
-        class="bg-degrade absolute w-1/4 h-[90%] z-[-1] "
+        class="bg-degrade absolute w-1/2 lg:w-1/4 h-[90%] z-[-1] "
       />
     {/if}
-    <div class="flex flex-col img-container">
+    <div class="flex flex-col justify-center img-container">
       {#each articles as article, i}
         <a href={"/articles/" + article.attributes.slug}>
           <div class="relative">
             <div class="relative max-w-xs overflow-hidden">
-              <img src={urlStrapiEfpDEV +
-                article.attributes.miniature.data.attributes.url} alt="" class="object-cover w-full h-full " />
-              <div class="absolute w-full h-[82%] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-5 flex items-center justify-center">
-                <h3 class="text-[#004E63]  text-2xl">{article.attributes.title}</h3>
+              <img
+                src={urlStrapiEfpDEV +
+                  article.attributes.miniature.data.attributes.url}
+                alt=""
+                class="object-cover w-full h-full "
+              />
+              <div
+                class="absolute w-full h-[82%] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-5 flex items-center justify-center"
+              >
+                <h3 class="text-[#004E63] text-2xl">
+                  {article.attributes.title}
+                </h3>
               </div>
             </div>
-
           </div>
         </a>
-        <!--{#if i == 1 && yScrollUser >= 1965 && deviceWidth > 1280}
-          <a href="{'/articles/'+article.attributes.slug}">
-            <img
-              transition:fade
-              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
-              class="max-w-xs"
-              alt=""
-            />
-          </a>
-        {/if}
-        {#if i == 2 && yScrollUser >= 2145 && deviceWidth > 1280}
-          <a href="{'/articles/'+article.attributes.slug}">
-            <img
-              transition:fade
-              src={urlStrapiEfpDEV + article.attributes.miniature.data.attributes.url}
-              class="max-w-xs"
-              alt=""
-            />
-          </a>
-        {/if}-->
       {/each}
-      <!--{#if yScrollUser >= 1745 && deviceWidth > 1280}
-        <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
-      {/if}
-      {#if yScrollUser >= 1965 && deviceWidth > 1280}
-        <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
-      {/if}
-      {#if yScrollUser >= 2145 && deviceWidth > 1280}
-        <img transition:fade src="/bg-home-efp.jpg" class="max-w-xs" alt="" />
-      {/if}-->
     </div>
   </div>
 </div>
@@ -154,7 +153,38 @@
     background-color: $vertGris;
   }
 
+  @media (max-width: 768px) {
+    a {
+      h2 {
+        font-size: 25px;
+        display: block;
+        margin: 15px auto 0 12vw;
+      }
+    }
+    .img-container a:nth-child(2){
+      margin-left: 0em;
+    }
+
+    .indic-last-articles {
+      display: none;
+    }
+    .anim-txt-lft-mobile {
+      animation: slideLeftToRightMobile ease 0.4s forwards 0.6s;
+    }
+  }
+
   @keyframes slideLeftToRight {
+    0% {
+      transform: translateX(0);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(40px);
+      opacity: 1;
+      opacity: 1;
+    }
+  }
+  @keyframes slideLeftToRightMobile {
     0% {
       transform: translateX(0);
       opacity: 0;

@@ -17,11 +17,11 @@
 <div
   class="lg:h-screen w-screen lg:w-1/3 flex flex-col lg:flex-row items-center"
 >
-  <a href="/realisations" class="z-10">
+  <a href="/realisations" class="z-10 ">
     {#if yScrollUser >= yScrollUserTrigger}
       <div
         transition:fade
-        class="cicle-gradient absolute left-[40px] block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-10vh]"
+        class="cicle-gradient absolute block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-10vh]"
       />
       <h2
         class={yScrollUser >= yScrollUserTrigger ? "anim-txt-lft" : "opacity-0"}
@@ -37,7 +37,7 @@
     {#if yScrollUser >= yScrollUserTrigger}
       <div
         transition:slide={{ delay: 250, duration: 1000, easing: expoInOut }}
-        class="bg-degrade absolute w-1/2 lg:w-1/4 h-[90%] "
+        class="bg-degrade absolute w-1/2 lg:w-1/4 h-[98%] lg:h-[90%] "
       />
     {/if}
   </div>
@@ -83,7 +83,7 @@
   @media (max-width: 768px) {
     a {
       display: block;
-      margin: 0 auto;
+      margin: 15px auto 0 12vw;
       h2 {
         font-size: 25px;
         letter-spacing: 0.16em;

@@ -84,7 +84,7 @@
   </section>
 
   <section class="container-content">
-    <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-row items-center relative z-20">
+    <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col lg:flex-row lg:items-center relative z-20">
       <LastArticles yScrollUser={y} deviceWidth={width}/>
     </div>
   </section>
