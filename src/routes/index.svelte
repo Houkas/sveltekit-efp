@@ -47,9 +47,9 @@
 />
 
 <!--Affichage du scroll y-->
-<div class="fixed left-0 top-0 z-20 text-red-500">Y : {y}</div>
-<div class="fixed left-0 top-10 z-20 text-red-500">Height : {height}</div>
-<div class="fixed left-0 top-20 z-20 text-red-500">Width : {width}</div>
+<div class="fixed left-0 top-0 z-50 text-red-500">Y : {y}</div>
+<div class="fixed left-0 top-10 z-50 text-red-500">Height : {height}</div>
+<div class="fixed left-0 top-20 z-50 text-red-500">Width : {width}</div>
 
 <div transition:fade class="content-container">
   <section class="container-content ">
@@ -77,7 +77,7 @@
 
   <section class="container-content">
     <div
-      class="dashed dashed-top min-h-screen mx-auto content-box flex flex-row items-center"
+      class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col lg:flex-row lg:items-center"
     >
       <LastRealisations yScrollUser={y} deviceWidth={width} />
     </div>

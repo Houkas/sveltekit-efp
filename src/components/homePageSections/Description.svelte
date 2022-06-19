@@ -118,7 +118,7 @@
     background-color: $vertGris;
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 768px) {
     .yellow-rec {
       height: 65vh;
       width: 55px;
@@ -141,6 +141,11 @@
       top: -15%;
     }
     .depot {
+      display: none;
+    }
+    // CSS COMMUN //
+
+    .indic-desc {
       display: none;
     }
   }

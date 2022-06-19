@@ -4,7 +4,6 @@
   import type { Realisation } from '../../types/realisation'
   import { fade, slide } from "svelte/transition";
   import { urlStrapiEfpDEV } from '../../shared/config';
-  import { set_attributes } from 'svelte/internal';
 
   let realisations: Realisation[] = [];
 
@@ -20,17 +19,11 @@
   realisations.forEach((realisaion) => {
     lastRealImg.push(urlStrapiEfpDEV+realisaion.attributes.miniature.data.attributes.url);
   });
-  
-  /*const carouselPhotos = [
-    "/bg-home-efp.jpg",
-    "/depot-efp.jpg",
-    "/logo-efp.jpg",
-  ];*/
 
   let index = 0;
 
   const interval = setInterval(function () {
-    next();
+    //next();
   }, 4000);
 
   const next = () => {
@@ -48,14 +41,14 @@
     clearInterval(interval);
   };
 
-  let isNavHidden = true;
+  let isNavHidden = false;
   function handleMouseOver() {
     isNavHidden = !isNavHidden;
   }
 </script>
 
 {#each [realisations[index]] as real (index)}
-  <div class="container-carousel absolute">
+  <div class="container-carousel w-screen lg:w-[55vw] absolute">
     <a href="{'/realisations/'+real.attributes.slug}" class="link">
       <img
         src={urlStrapiEfpDEV + real.attributes.miniature.data.attributes.url}
@@ -74,13 +67,13 @@
         : 'opacity-100'}"
     >
       <button
-        class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] ml-[-1.5em] mt-[-.5em] radius-5"
+        class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] lg:ml-[-1.5em] mt-[-.5em] radius-5"
         on:click={btnPrev}
       >
         <img class=" " src="/arrow_left.svg" alt="précédent" />
       </button>
       <button
-        class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative mr-[-1.5em] mt-[-.5em] radius-5"
+        class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative lg:mr-[-1.5em] mt-[-.5em] radius-5"
         on:click={btnNext}
       >
         <img class=" scale-x-[-1] " src="/arrow_left.svg" alt="suivant" />
@@ -91,7 +84,6 @@
 
 <style lang="scss">
   .container-carousel {
-    width: 55vw;
     button {
       border-radius: 20px;
       background-color: $vertGris;
