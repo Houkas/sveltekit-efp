@@ -18,7 +18,7 @@
   class="lg:h-screen w-screen lg:w-1/3 flex flex-col lg:flex-row items-center"
 >
   <a href="/realisations" class="z-10 ">
-    {#if yScrollUser >= yScrollUserTrigger}
+    
       <div
         transition:fade
         class="cicle-gradient absolute block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-10vh]"
@@ -29,7 +29,7 @@
       >
         Réalisations
       </h2>
-    {/if}
+   
   </a>
 </div>
 <div class="lg:h-screen w-screen lg:w-2/3 flex flex-col lg:flex-row items-center justify-center">

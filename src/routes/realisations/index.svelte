@@ -1,28 +1,25 @@
 <script context="module" lang="ts">
-  /*
-  import { fetchStrapiRealisations } from '../../shared/strapi_service';
-  import type { Realisation } from '../../types/realisation';
+  import { fade } from "svelte/transition";
+  import type { Realisation } from "../../types/realisation";
+  import { apiRealisationsData } from "../../shared/store";
 
+  export let realisations: Realisation[] = []
+  
+  //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
   export async function load() {
-    const realisations: Realisation[] = await fetchStrapiRealisations();
+    apiRealisationsData.subscribe((values) => {
+      realisations = values;
+    });
     if (realisations) {
       return {
         props: {
           realisations: realisations,
         },
       };
+    } else {
+      throw new Error();
     }
-  }*/
-</script>
-
-<script lang="ts">
-  import { fade } from 'svelte/transition';
-  import type { Realisation } from '../../types/realisation';
-  import { apiRealisationsData } from '../../shared/store'
-  export let realisations: Realisation[];
-  apiRealisationsData.subscribe(values => {
-    realisations = values;
-  });
+  }
 </script>
 
 <svelte:head>
@@ -33,16 +30,24 @@
   />
 </svelte:head>
 
-<div transition:fade class="realisations container mx-auto h-screen bg-gray-200">
+<div
+  transition:fade
+  class="realisations container mx-auto h-screen bg-gray-200"
+>
   <p>Realisations EFP</p>
   <ul>
-    {#each realisations as realisation}
-      <li class="m-2 p-2">
-        <a class="m-2 p-2" href={`/realisations/${realisation.attributes.slug}`}>
-          {realisation.attributes.title}
-        </a>
-      </li>
-    {/each}
+    {#if realisations && realisations.length > 0}
+      {#each realisations as realisation}
+        <li class="m-2 p-2">
+          <a
+            class="m-2 p-2"
+            href={`/realisations/${realisation.attributes.slug}`}
+          >
+            {realisation.attributes.title}
+          </a>
+        </li>
+      {/each}
+    {/if}
   </ul>
 </div>
 

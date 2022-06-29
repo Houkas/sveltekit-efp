@@ -1,35 +1,26 @@
 <script context="module" lang="ts">
-  import { fetchStrapiArticles, fetchStrapiRealisations } from "../shared/strapi_service";
-  import type { Article } from "../types/article";
-  import type { Realisation } from "../types/realisation";
+  import { fade } from "svelte/transition";
+  import LastRealisations from "../components/homePageSections/LastRealisations.svelte";
+  import Description from "../components/homePageSections/Description.svelte";
+  import LastArticles from "../components/homePageSections/LastArticles.svelte";
+  import {
+    fetchStrapiArticles,
+    fetchStrapiRealisations,
+  } from "../shared/strapi_service";
+  import { onMount } from "svelte";
 
-  export async function load() {
-    const articles: Article[] = await fetchStrapiArticles();
-    const realisations: Realisation[] = await fetchStrapiRealisations();
-    if (articles && realisations) {
-      return {
-        props: {
-          articles: articles,
-          realisations: realisations,
-        },
-      };
-    }
-  }
 </script>
 
 <script lang="ts">
-  import { fade } from "svelte/transition";
-  import LastRealisations from "../components/homePageSections/LastRealisations.svelte";
-  import Description from "../components/homePageSections/Description.svelte"
-  import LastArticles from "../components/homePageSections/LastArticles.svelte";
+  //requete faite sur le serveur, indexée dans le code source de la page et le tout ne retourne rien si l'api est down, feels good 
+  onMount(async () => {
+    await fetchStrapiArticles();
+    await fetchStrapiRealisations();
+  });
 
-  export let realisations:Realisation[];
-  export let articles:Article[];
   $: y = 0;
   $: width = 0;
   $: height = 0;
-  //const isAnimated: boolean = y > 25 ? true : false;
-
 </script>
 
 <svelte:head>
@@ -84,8 +75,10 @@
   </section>
 
   <section class="container-content">
-    <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col lg:flex-row lg:items-center relative z-20">
-      <LastArticles yScrollUser={y} deviceWidth={width}/>
+    <div
+      class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col lg:flex-row lg:items-center relative z-20"
+    >
+      <LastArticles yScrollUser={y} deviceWidth={width} />
     </div>
   </section>
 </div>

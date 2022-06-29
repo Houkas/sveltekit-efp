@@ -1,23 +1,27 @@
 <script lang="ts">
-
-  import { apiRealisationsData } from '../../shared/store'
-  import type { Realisation } from '../../types/realisation'
+  import { apiRealisationsData } from "../../shared/store";
+  import type { Realisation } from "../../types/realisation";
   import { fade, slide } from "svelte/transition";
-  import { urlStrapiEfpDEV } from '../../shared/config';
+  import { urlStrapiEfpDEV } from "../../shared/config";
 
   let realisations: Realisation[] = [];
 
-  apiRealisationsData.subscribe(values =>{
+  apiRealisationsData.subscribe((values) => {
     realisations = values;
   });
 
   let lastRealImg: string[] = [];
 
-  realisations = realisations.sort((a, b) => Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt));
+  realisations = realisations.sort(
+    (a, b) =>
+      Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt)
+  );
   realisations = realisations.slice(0, 3);
 
   realisations.forEach((realisaion) => {
-    lastRealImg.push(urlStrapiEfpDEV+realisaion.attributes.miniature.data.attributes.url);
+    lastRealImg.push(
+      urlStrapiEfpDEV + realisaion.attributes.miniature.data.attributes.url
+    );
   });
 
   let index = 0;
@@ -47,40 +51,42 @@
   }
 </script>
 
-{#each [realisations[index]] as real (index)}
-  <div class="container-carousel w-screen lg:w-[55vw] absolute">
-    <a href="{'/realisations/'+real.attributes.slug}" class="link">
-      <img
-        src={urlStrapiEfpDEV + real.attributes.miniature.data.attributes.url}
-        transition:fade
-        alt=""
-        class="img-carousel z-5 max-h-['510px']"
-        on:mouseover={handleMouseOver}
-      />
-    </a>
+{#if realisations && realisations.length > 0}
+  {#each [realisations[index]] as real (index)}
+    <div class="container-carousel w-screen lg:w-[55vw] absolute">
+      <a href={"/realisations/" + real.attributes.slug} class="link">
+        <img
+          src={urlStrapiEfpDEV + real.attributes.miniature.data.attributes.url}
+          transition:fade
+          alt=""
+          class="img-carousel z-5 max-h-['510px']"
+          on:mouseover={handleMouseOver}
+        />
+      </a>
 
-    <div
-      transition:fade
-      class="nav-caroussel flex flex-row items-end justify-between {isNavHidden ==
-      true
-        ? 'opacity-0'
-        : 'opacity-100'}"
-    >
-      <button
-        class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] lg:ml-[-1.5em] mt-[-.5em] radius-5"
-        on:click={btnPrev}
+      <div
+        transition:fade
+        class="nav-caroussel flex flex-row items-end justify-between {isNavHidden ==
+        true
+          ? 'opacity-0'
+          : 'opacity-100'}"
       >
-        <img class=" " src="/arrow_left.svg" alt="précédent" />
-      </button>
-      <button
-        class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative lg:mr-[-1.5em] mt-[-.5em] radius-5"
-        on:click={btnNext}
-      >
-        <img class=" scale-x-[-1] " src="/arrow_left.svg" alt="suivant" />
-      </button>
+        <button
+          class="arrow-icon left-0 top-0 h-10 w-10 p-[10px] lg:ml-[-1.5em] mt-[-.5em] radius-5"
+          on:click={btnPrev}
+        >
+          <img class=" " src="/arrow_left.svg" alt="précédent" />
+        </button>
+        <button
+          class="arrow-icon right-0 top-0 h-10 w-10 p-[10px] relative lg:mr-[-1.5em] mt-[-.5em] radius-5"
+          on:click={btnNext}
+        >
+          <img class=" scale-x-[-1] " src="/arrow_left.svg" alt="suivant" />
+        </button>
+      </div>
     </div>
-  </div>
-{/each}
+  {/each}
+{/if}
 
 <style lang="scss">
   .container-carousel {

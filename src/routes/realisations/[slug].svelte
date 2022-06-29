@@ -4,14 +4,20 @@
   import type { Realisation } from "../../types/realisation";
   import type { Load } from "@sveltejs/kit";
 
+  //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
   export const load:Load = async({ params }) =>{
     const slug = params.slug;
     const realisation: Realisation = await fetchStrapiRealisation(slug);
-    return {
+    if(realisation){
+      return {
       props: {
         realisation: realisation,
       },
     };
+    } else {
+      throw new Error();
+    }
+    
   }
 </script>
 

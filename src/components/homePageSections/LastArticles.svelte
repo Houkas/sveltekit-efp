@@ -30,7 +30,6 @@
       Date.parse(b.attributes.createdAt) - Date.parse(a.attributes.createdAt)
   );
   articles = articles.slice(0, 3);
-  console.log(articles);
 </script>
 
 <div

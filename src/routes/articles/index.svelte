@@ -1,34 +1,24 @@
 <script context="module" lang="ts">
-  /*import { fade } from "svelte/transition";
-  import { fetchStrapiArticles } from "../../shared/strapi_service";
-  import type { Article } from "../../types/article";
+  import { fade } from "svelte/transition";
+  import type { Article } from "src/types/article";
+  import { apiArticlesData } from '../../shared/store';
 
+  export let articles: Article[] = []
+  
+  //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
   export async function load() {
-    const articles: Article[] = await fetchStrapiArticles();
+    apiArticlesData.subscribe((values) => {
+      articles = values;
+    });
     if (articles) {
       return {
         props: {
           articles: articles,
         },
       };
+    } else {
+      throw new Error();
     }
-  }*/
-
-</script>
-
-<script lang="ts">
-  
-  import { fade } from "svelte/transition";
-  import type { Article } from "src/types/article";
-  import { apiArticlesData } from '../../shared/store';
-
-  export let articles: Article[];
-
-  apiArticlesData.subscribe(values => {
-    articles = values
-  })
-  if(!articles){
-    // appeler la route api pour fetch tous les articles
   }
 </script>
 
@@ -43,7 +33,7 @@
 <div transition:fade class="articles container mx-auto h-screen bg-gray-200">
   <p>Liste de tous les articles</p>
   <ul>
-    {#if articles}
+    {#if articles && articles.length > 0}
       {#each articles as article}
         <li class="m-2 p-2">
           <a class="m-2 p-2" href={`/articles/${article.attributes.slug}`}>

@@ -1,19 +1,23 @@
 <script lang="ts" context="module">
   import type { Load } from "@sveltejs/kit";
-
   import { fade } from "svelte/transition";
   import { fetchStrapiArticle } from "../../shared/strapi_service";
   import type { Article } from "../../types/article";
 
-  export const load:Load = async({ params }) =>{
+   //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
+  export const load: Load = async ({ params }) => {
     const slug = params.slug;
     const article: Article = await fetchStrapiArticle(slug);
-    return {
-      props: {
-        article: article,
-      },
-    };
-  }
+    if (article) {
+      return {
+        props: {
+          article: article,
+        },
+      };
+    } else {
+      throw new Error();
+    }
+  };
 </script>
 
 <script lang="ts">
@@ -25,14 +29,12 @@
   <meta name="description" content="$" />
 </svelte:head>
 
-<div
-  class="article container mx-auto mt-7 bg-gray-200 min-h-screen"
->
+<div class="article container mx-auto mt-7 bg-gray-200 min-h-screen">
   <section class=" p-4 border-2 border-solid border-stone-400 w-full">
     {#if article}
       <h1>{article.attributes.title}</h1>
       {@html article.attributes.body}
-      {:else}
+    {:else}
       <p>Chargement du contenu...</p>
     {/if}
   </section>
