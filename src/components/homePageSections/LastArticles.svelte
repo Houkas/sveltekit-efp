@@ -87,7 +87,7 @@
                 class="object-cover w-full h-full "
               />
               <div
-                class="absolute w-full h-[82%] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-5 flex items-center justify-center"
+                class="absolute w-full h-[84%] h-[-webkit-fill-available]  mt-[20px] mb-[20px] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-0 flex items-center justify-center"
               >
                 <h3 class="text-[#004E63] text-2xl">
                   {article.attributes.title}

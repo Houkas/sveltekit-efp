@@ -15,7 +15,7 @@
 </script>
 <svelte:window bind:scrollY={y} />
   
-<nav class="px-2 sm:px-4 py-2.5 fixed {y == 0 ? 'bg-transparent duration-500' : 'bg-[#F8FBFB] duration-500'}">
+<nav class="px-2 sm:px-4 py-2.5 fixed {y == 0 && isHomePage ? 'bg-transparent duration-500' : 'bg-[#F8FBFB] duration-500'}">
   <div class="container flex flex-wrap justify-between items-center">
     <a href="/">
       <img src="/logo-efp-with-initials.png" class="logo-efp" alt="efp logo" />

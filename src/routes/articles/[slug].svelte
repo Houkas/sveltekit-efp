@@ -5,9 +5,10 @@
   import type { Article } from "../../types/article";
 
    //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
+  export let article: Article;
   export const load: Load = async ({ params }) => {
     const slug = params.slug;
-    const article: Article = await fetchStrapiArticle(slug);
+    article = await fetchStrapiArticle(slug);
     if (article) {
       return {
         props: {
@@ -18,10 +19,6 @@
       throw new Error();
     }
   };
-</script>
-
-<script lang="ts">
-  export let article: Article;
 </script>
 
 <svelte:head>

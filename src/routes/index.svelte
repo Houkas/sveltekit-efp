@@ -13,6 +13,7 @@
 
 <script lang="ts">
   //requete faite sur le serveur, indexée dans le code source de la page et le tout ne retourne rien si l'api est down, feels good 
+
   onMount(async () => {
     await fetchStrapiArticles();
     await fetchStrapiRealisations();
