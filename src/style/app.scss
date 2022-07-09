@@ -1,20 +1,29 @@
 $vertFonce: #004E63;
-$vertGris:#E2E9E9;
+$vertGris: #E2E9E9;
 $blanc: #F8FBFB;
 $noir: #122023;
-$jaune:#F8F158;
-$bleuClair:#26fff4;
-body, main{
+$jaune: #F8F158;
+$bleuClair: #26fff4;
+
+body,
+main {
     font-family: 'Roboto Slab', serif;
     margin: 0;
     background-color: $blanc;
     overflow-x: hidden;
-    
+
+    overflow-y: hidden;
+
 }
-h1, h2, h3, h4{
+
+h1,
+h2,
+h3,
+h4 {
     font-family: 'Zen Kaku Gothic New', sans-serif;
 }
-p{
+
+p {
     font-family: 'Roboto Slab', serif;
-    color:$noir;
+    color: $noir;
 }

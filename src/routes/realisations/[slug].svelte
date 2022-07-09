@@ -42,34 +42,34 @@
 
 <section class="container-content mt-[70px]">
   <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col">
+
     <div class=" flex flex-col items-center">
-      <div class="underline" />
       <h1
-        class="mt-[30px] text-center uppercase font-bold tracking-widest text-[50px] text-[#26FFF4] z-10"
+        class="px-4 bg-[#004E63] mt-[30px] uppercase font-bold tracking-widest text-[25px] lg:text-[60px] text-[#26FFF4] z-10 text-center"
       >
         {realisation.attributes.title}
       </h1>
       <div class="flex flex-row">
         <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
+          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 mx-2 my-5"
         />
         <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
+          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 mx-2 my-5"
         />
         <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
+          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 mx-2 my-5"
         />
       </div>
       <img
-      src={urlStrapiEfpDEV +
-        realisation.attributes.miniature.data.attributes.url}
-      alt=""
-      class="object-cover w-[320px] h-[207px]"
+        src={urlStrapiEfpDEV +
+          realisation.attributes.miniature.data.attributes.url}
+        alt=""
+        class="object-cover w-[320px] h-[207px]"
       />
     </div>
-    <div class="flex flex-row items-center">
-      <div class="realisation container mx-auto bg-gray-200">
-        <section class="p-4 w-full">
+    <div class="flex flex-row items-center justify-center">
+      <div class="realisation container mx-auto bg-gray-200 w-[90%]">
+        <section class="p-4">
           {#if realisation}
             <h1>{realisation.attributes.title}</h1>
             {@html realisation.attributes.body}
@@ -148,6 +148,16 @@
           border: solid 1px rgb(87, 87, 87);
         }
       }
+    }
+  }
+  // RESPONSIVE //
+  @media (max-width: 768px) {
+    .content-box {
+      padding: 0;
+    }
+
+    .dashed::after {
+      right: 0;
     }
   }
 </style>

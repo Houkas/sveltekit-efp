@@ -7,18 +7,24 @@
     fetchStrapiArticles,
     fetchStrapiRealisations,
   } from "../shared/strapi_service";
-  import { onMount } from "svelte";
 
+  export async function load() {
+    const strapiArticles = await fetchStrapiArticles();
+    const strapiReal = await fetchStrapiRealisations();
+    if (strapiArticles && strapiReal) {
+      return {
+        props: {
+          articles: strapiArticles,
+          realisaions: strapiReal,
+        },
+      };
+    } else {
+      throw new Error();
+    }
+  }
 </script>
 
 <script lang="ts">
-  //requete faite sur le serveur, indexée dans le code source de la page et le tout ne retourne rien si l'api est down, feels good 
-
-  onMount(async () => {
-    await fetchStrapiArticles();
-    await fetchStrapiRealisations();
-  });
-
   $: y = 0;
   $: width = 0;
   $: height = 0;
@@ -38,10 +44,10 @@
   bind:innerWidth={width}
 />
 
-<!--Affichage du scroll y-->
+<!--Affichage du scroll y
 <div class="fixed left-0 top-0 z-50 text-red-500">Y : {y}</div>
 <div class="fixed left-0 top-10 z-50 text-red-500">Height : {height}</div>
-<div class="fixed left-0 top-20 z-50 text-red-500">Width : {width}</div>
+<div class="fixed left-0 top-20 z-50 text-red-500">Width : {width}</div>-->
 
 <div transition:fade class="content-container">
   <section class="container-content ">

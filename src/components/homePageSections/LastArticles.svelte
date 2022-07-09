@@ -40,7 +40,7 @@
       <h2
         class="{yScrollUser >= yScrollUserTrigger
           ? 'anim-txt-lft'
-          : 'opacity-0'} leading-20 flex flex-row lg:flex-col"
+          : 'opacity-0'} leading-20 flex flex-row lg:flex-col lg:text-[60px]"
         out:fade
       >
         <span class="lg:ml-1">Nos</span>
@@ -107,11 +107,9 @@
     h2 {
       text-transform: uppercase;
       margin: 10px 0 10px 0;
-      font-size: 40px;
       color: $vertFonce;
       font-weight: bold;
       z-index: 10;
-      font-size: 80px;
       letter-spacing: 0.16em;
       opacity: 0;
     }

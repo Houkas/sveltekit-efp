@@ -24,7 +24,7 @@
         class="cicle-gradient absolute block content-[''] bg-[url('/circle_degrade.svg')] w-[40vh] h-[40vh] z-[-1] mt-[-10vh]"
       />
       <h2
-        class={yScrollUser >= yScrollUserTrigger ? "anim-txt-lft" : "opacity-0"}
+        class={yScrollUser >= yScrollUserTrigger ? "anim-txt-lft lg:text-[60px]" : "opacity-0"}
         out:fade
       >
         Réalisations
@@ -50,11 +50,9 @@
     h2 {
       text-transform: uppercase;
       margin: 10px 0 10px 0;
-      font-size: 40px;
       color: $vertFonce;
       font-weight: bold;
       z-index: 10;
-      font-size: 80px;
       letter-spacing: 0.16em;
       opacity: 0;
     }

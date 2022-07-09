@@ -1,16 +1,17 @@
-<script lang="ts">
+<script lang="ts" context="module">
   import { apiRealisationsData } from "../../shared/store";
   import type { Realisation } from "../../types/realisation";
   import { fade, slide } from "svelte/transition";
   import { urlStrapiEfpDEV } from "../../shared/config";
 
-  let realisations: Realisation[] = [];
+  export let realisations: Realisation[] = [];
 
   apiRealisationsData.subscribe((values) => {
     realisations = values;
   });
+</script>
 
-  let lastRealImg: string[] = [];
+<script lang="ts">
 
   realisations = realisations.sort(
     (a, b) =>
@@ -18,23 +19,17 @@
   );
   realisations = realisations.slice(0, 3);
 
-  realisations.forEach((realisaion) => {
-    lastRealImg.push(
-      urlStrapiEfpDEV + realisaion.attributes.miniature.data.attributes.url
-    );
-  });
-
   let index = 0;
 
   const interval = setInterval(function () {
-    //next();
+    next();
   }, 4000);
 
   const next = () => {
-    index = (index + 1) % lastRealImg.length;
+    index = (index + 1) % realisations.length;
   };
   const prev = () => {
-    index = index != 0 ? index - 1 : index + lastRealImg.length - 1;
+    index = index != 0 ? index - 1 : index + realisations.length - 1;
   };
   const btnNext = () => {
     next();
@@ -55,6 +50,7 @@
   {#each [realisations[index]] as real (index)}
     <div class="container-carousel w-screen lg:w-[55vw] absolute">
       <a href={"/realisations/" + real.attributes.slug} class="link">
+        <!-- svelte-ignore a11y-mouse-events-have-key-events -->
         <img
           src={urlStrapiEfpDEV + real.attributes.miniature.data.attributes.url}
           transition:fade

@@ -1,21 +1,23 @@
-<style lang="scss">
-  @import "Header.scss";
-</style>
-
 <script>
   import { page } from "$app/stores";
-  import { fade } from 'svelte/transition';
+  import { fade } from "svelte/transition";
 
   $: isHomePage = $page.url.pathname == "/" ? true : false;
   let isMenuOpen = false;
   function openMobileMenu() {
     isMenuOpen = !isMenuOpen;
   }
-  $:y = 0;
+  $: y = 0;
 </script>
+
 <svelte:window bind:scrollY={y} />
-  
-<nav class="px-2 sm:px-4 py-2.5 fixed {y == 0 && isHomePage ? 'bg-transparent duration-500' : 'bg-[#F8FBFB] duration-500'}">
+
+<nav
+  class:bg-[#F8FBFB]="{isMenuOpen === true || y !== 0}"
+  class="px-2 sm:px-4 py-2.5 fixed {y == 0 && isHomePage
+    ? 'bg-transparent duration-500'
+    : 'bg-[#F8FBFB] duration-500'}"
+>
   <div class="container flex flex-wrap justify-between items-center">
     <a href="/">
       <img src="/logo-efp-with-initials.png" class="logo-efp" alt="efp logo" />
@@ -24,7 +26,7 @@
     <button
       data-collapse-toggle="mobile-menu"
       type="button"
-      class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:focus:ring-gray-600"
       aria-controls="mobile-menu"
       aria-expanded="false"
       on:click={openMobileMenu}
@@ -53,35 +55,46 @@
         /></svg
       >
     </button>
-    <div
-      class="{isMenuOpen === true ? '' : 'hidden'} w-full md:block md:w-auto"
-      id="mobile-menu"
-    >
-      <ul
-        class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium"
+    {#if isMenuOpen}
+      <div
+        transition:fade
+        class="{isMenuOpen === true
+          ? ''
+          : 'hidden'} w-full h-screen md:block md:w-auto"
+        id="mobile-menu"
       >
-        <li transition:fade class={isHomePage === true ? "hidden" : ""}>
-          <a  href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
-        </li>
-        <li>
-          <a href="/realisations" class="block py-2 pr-4 pl-3 md:p-0"
-            >Réalisations</a
-          >
-        </li>
-        <li>
-          <a href="/partenaires" class="block py-2 pr-4 pl-3 md:p-0"
-            >Partenaires</a
-          >
-        </li>
-        <li>
-          <a href="/articles" class="block py-2 pr-4 pl-3 md:p-0">Articles</a>
-        </li>
-        <li>
-          <a href="/contact" class="block py-2 pr-4 pl-3 md:p-0">Contact</a>
-        </li>
-      </ul>
-    </div>
+        <ul
+          class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium"
+        >
+          <li transition:fade class={isHomePage === true ? "hidden" : ""}>
+            <a href="/" class="block py-2 pr-4 pl-3 md:p-0">Accueil</a>
+          </li>
+          <li>
+            <a 
+              on:click={openMobileMenu}
+              href="/realisations" class="block py-2 pr-4 pl-3 md:p-0">
+              Réalisations
+              </a>
+          </li>
+          <li>
+            <a 
+              on:click={openMobileMenu}
+              href="/partenaires" class="block py-2 pr-4 pl-3 md:p-0"
+              >Partenaires</a
+            >
+          </li>
+          <li>
+            <a on:click={openMobileMenu} href="/articles" class="block py-2 pr-4 pl-3 md:p-0">Articles</a>
+          </li>
+          <li>
+            <a on:click={openMobileMenu} href="/contact" class="block py-2 pr-4 pl-3 md:p-0">Contact</a>
+          </li>
+        </ul>
+      </div>
+    {/if}
   </div>
 </nav>
 
-
+<style lang="scss">
+  @import "Header.scss";
+</style>

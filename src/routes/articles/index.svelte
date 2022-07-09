@@ -3,14 +3,15 @@
   import type { Article } from "src/types/article";
   import { apiArticlesData } from "../../shared/store";
   import { urlStrapiEfpDEV } from "../../shared/config";
+  import type { Load } from "@sveltejs/kit";
+  import { fetchStrapiArticles } from "../../shared/strapi_service";
+  import Title from "../../components/title/Title.svelte";
 
   export let articles: Article[] = [];
 
   //Pour loader de la data, ici consumer le store, la function load execute le code sur le server et sur le client.
-  export async function load() {
-    apiArticlesData.subscribe((values) => {
-      articles = values;
-    });
+  export const load: Load = async () => {
+    articles = await fetchStrapiArticles();
     if (articles) {
       return {
         props: {
@@ -20,7 +21,7 @@
     } else {
       throw new Error();
     }
-  }
+  };
 </script>
 
 <svelte:head>
@@ -33,53 +34,39 @@
 
 <section class="container-content mt-[70px]">
   <div class="dashed dashed-top min-h-screen mx-auto content-box flex flex-col">
-    <div class=" flex flex-col items-center">
-      <div class="underline" />
-      <h1
-        class="mt-[30px] uppercase font-bold tracking-widest text-[60px] text-[#26FFF4] z-10"
-      >
-        Articles
-      </h1>
-      <div class="flex flex-row">
-        <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
-        />
-        <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
-        />
-        <div
-          class="cicle-gradient  block content-[''] bg-[url('/circle_degrade.svg')] w-[20px] h-[20px] z-0 m-1"
-        />
-      </div>
-    </div>
-    <div class="flex flex-row items-center mt-5">
-      <ul class="w-screen flex flex-row justify-center flex-wrap">
-        <div class="bg-degrade absolute w-[80%] h-[80vh] z-0 " />
+    
+    <Title title="Articles"></Title>
+
+    <div class="flex flex-row items-center mt-5 justify-center">
+      <ul class="w-[95%] flex flex-row justify-center flex-wrap bg-degrade">
         {#if articles && articles.length > 0}
-        {#each articles as article}
-          <li class="mx-20 p-2 z-10">
-            <a class="m-2 p-2" href={`/articles/${article.attributes.slug}`}>
-              <div class="relative">
-                <div class="relative max-w-xs overflow-hidden">
-                  <img
-                    src={urlStrapiEfpDEV +
-                      article.attributes.miniature.data.attributes.url}
-                    alt=""
-                    class="object-cover w-[320px] h-[207px]"
-                  />
-                  <div
-                    class="absolute w-full h-[84%] h-[-webkit-fill-available] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-0 flex items-center justify-center"
-                  >
-                    <h3 class="text-[#004E63] text-2xl">
-                      {article.attributes.title}
-                    </h3>
+          {#each articles as article}
+            <li class="mx-10 p-2 z-10">
+              <a
+                class="m-2 p-2 "
+                href={`/articles/${article.attributes.slug}`}
+              >
+                <div class="relative">
+                  <div class="relative max-w-xs overflow-hidden">
+                    <img
+                      src={urlStrapiEfpDEV +
+                        article.attributes.miniature.data.attributes.url}
+                      alt=""
+                      class="object-cover w-[320px] h-[207px]"
+                    />
+                    <div
+                      class="absolute w-full h-[84%] h-[-webkit-fill-available] py-2.5 text-center leading-4 bg-[#E2E9E9]/[.75] top-0 flex items-center justify-center"
+                    >
+                      <h3 class="text-[#004E63] text-2xl">
+                        {article.attributes.title}
+                      </h3>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </a>
-          </li>
-        {/each}
-      {/if}
+              </a>
+            </li>
+          {/each}
+        {/if}
       </ul>
     </div>
   </div>
@@ -158,6 +145,16 @@
           border: solid 1px rgb(87, 87, 87);
         }
       }
+    }
+  }
+  // RESPONSIVE //
+  @media (max-width: 768px) {
+    .content-box {
+      padding: 0;
+    }
+
+    .dashed::after {
+      right: 0;
     }
   }
 </style>
